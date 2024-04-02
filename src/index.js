@@ -16,14 +16,14 @@ const sheetName = workbook.SheetNames[0];
 const sheet = sheetName != null ? workbook.Sheets[sheetName] : undefined;
 
 if (sheet == null) {
-  throw new Error("Could not open sheet.");
+  throw new Error("Cannot open sheet");
 }
 
 /** @type {Record<string, unknown>[]} */
 const [unitRow, ...rateRows] = XLSX.utils.sheet_to_json(sheet, { UTC: true });
 
 if (unitRow == null) {
-  throw new Error("Could not parse unit for each currency.");
+  throw new Error("Cannot parse currency units");
 }
 
 const unitByCurrency = new Map(
