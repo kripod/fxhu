@@ -11,7 +11,11 @@ const DEFAULT_FRACTION_DIGITS = 2;
 
 XLSX.set_fs(fs);
 
-const workbook = XLSX.readFile("./arfolyam.xlsx", { cellDates: true });
+const workbook = XLSX.readFile("./arfolyam.xlsx", {
+  cellDates: true,
+  cellText: false,
+  cellHTML: false,
+});
 const sheetName = workbook.SheetNames[0];
 const sheet = sheetName != null ? workbook.Sheets[sheetName] : undefined;
 
