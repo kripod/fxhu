@@ -1,0 +1,22 @@
+{
+  "name": "mnb-fx-rates",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "lint": "pnpm run \"/^lint:(?!fix)/\"",
+    "lint:format": "prettier --check .",
+    "lint:types": "tsc --noEmit",
+    "lint:fix": "pnpm run \"/^lint:fix:/\"",
+    "lint:fix:format": "prettier --write ."
+  },
+  "dependencies": {
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.3",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.3"
+  },
+  "packageManager": "pnpm@8.15.6"
+}
