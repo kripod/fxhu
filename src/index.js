@@ -2,8 +2,10 @@ import * as fs from "node:fs";
 
 import * as XLSX from "xlsx";
 
+import { stringifyDate } from "./utils/date.js";
 import { roundTo, safeParseFloat } from "./utils/number.js";
 
+const BASE_CURRENCY = "HUF";
 const DATE_KEY = "Dátum/ISO";
 const DEFAULT_FRACTION_DIGITS = 2;
 
@@ -39,22 +41,21 @@ for (const row of rows) {
     for (const [key, value] of Object.entries(row)) {
       if (key !== DATE_KEY) {
         const unit = unitByCurrency.get(key);
-
         if (unit != null) {
-          let rateByDate = rateByDateByCurrency.get(key);
-          if (rateByDate == null) {
-            rateByDate = new Map();
-            rateByDateByCurrency.set(key, rateByDate);
-          }
-
           const offsetRate = safeParseFloat(value);
           if (offsetRate != null) {
             const rate = roundTo(
               offsetRate / unit,
               DEFAULT_FRACTION_DIGITS + Math.ceil(Math.log10(unit)),
             );
+
             // Sanity check
             if (rate > 0) {
+              let rateByDate = rateByDateByCurrency.get(key);
+              if (rateByDate == null) {
+                rateByDate = new Map();
+                rateByDateByCurrency.set(key, rateByDate);
+              }
               rateByDate.set(date, rate);
             }
           }
@@ -64,4 +65,11 @@ for (const row of rows) {
   }
 }
 
-console.log(rateByDateByCurrency);
+for (const [currency, rateByDate] of rateByDateByCurrency) {
+  console.log(
+    currency + BASE_CURRENCY,
+    Object.fromEntries(
+      [...rateByDate].map(([date, rate]) => [stringifyDate(date), rate]),
+    ),
+  );
+}
