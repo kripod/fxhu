@@ -20,9 +20,8 @@ if (sheet == null) {
 }
 
 /** @type {Record<string, unknown>[]} */
-const rows = XLSX.utils.sheet_to_json(sheet, { UTC: true });
+const [unitRow, ...rateRows] = XLSX.utils.sheet_to_json(sheet, { UTC: true });
 
-const unitRow = rows.shift();
 if (unitRow == null) {
   throw new Error("Could not parse unit for each currency.");
 }
@@ -34,11 +33,11 @@ const unitByCurrency = new Map(
 /** @type {Map<string, Map<Date, number>>} */
 const rateByDateByCurrency = new Map();
 
-for (const row of rows) {
-  const date = row[DATE_KEY];
+for (const rateRow of rateRows) {
+  const date = rateRow[DATE_KEY];
 
   if (date instanceof Date) {
-    for (const [key, value] of Object.entries(row)) {
+    for (const [key, value] of Object.entries(rateRow)) {
       if (key !== DATE_KEY) {
         const unit = unitByCurrency.get(key);
         if (unit != null) {
