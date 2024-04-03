@@ -31,11 +31,15 @@ if (unitRow == null) {
 }
 
 const unitByCurrency = new Map(
-  Object.entries(unitRow).map(([key, value]) => [key, safeParseFloat(value)]),
+  Object.entries(unitRow)
+    .filter(([key]) => key !== DATE_KEY)
+    .map(([currency, value]) => [currency, safeParseFloat(value)]),
 );
 
 /** @type {Map<string, Map<Date, number>>} */
-const rateByDateByCurrency = new Map();
+const rateByDateByCurrency = new Map(
+  [...unitByCurrency.keys()].map((currency) => [currency, new Map()]),
+);
 
 for (const rateRow of rateRows) {
   const date = rateRow[DATE_KEY];
@@ -54,12 +58,8 @@ for (const rateRow of rateRows) {
 
             // Sanity check
             if (rate > 0) {
-              let rateByDate = rateByDateByCurrency.get(key);
-              if (rateByDate == null) {
-                rateByDate = new Map();
-                rateByDateByCurrency.set(key, rateByDate);
-              }
-              rateByDate.set(date, rate);
+              const rateByDate = rateByDateByCurrency.get(key);
+              rateByDate?.set(date, rate);
             }
           }
         }
