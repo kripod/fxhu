@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "node --watch ./src/index.js",
     "start": "node ./src/index.js",
     "lint": "pnpm run \"/^lint:(?!fix)/\"",
     "lint:format": "prettier --check .",
