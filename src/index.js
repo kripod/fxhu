@@ -5,8 +5,8 @@ import * as XLSX from "xlsx";
 import { stringifyDate } from "./utils/date.js";
 import { roundTo, safeParseFloat } from "./utils/number.js";
 
-const BASE_CURRENCY = "HUF";
 const DATE_KEY = "Dátum/ISO";
+const QUOTE_CURRENCY = "HUF";
 const DEFAULT_FRACTION_DIGITS = 2;
 
 XLSX.set_fs(fs);
@@ -70,7 +70,7 @@ for (const rateRow of rateRows) {
 
 for (const [currency, rateByDate] of rateByDateByCurrency) {
   console.log(
-    currency + BASE_CURRENCY,
+    currency + QUOTE_CURRENCY,
     Object.fromEntries(
       [...rateByDate].map(([date, rate]) => [stringifyDate(date), rate]),
     ),
