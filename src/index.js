@@ -30,15 +30,17 @@ if (unitRow == null) {
   throw new Error("Cannot parse currency units");
 }
 
+const currencies = Object.keys(unitRow).filter(
+  (key) => key !== DATE_KEY && key !== QUOTE_CURRENCY,
+);
+
 const unitByCurrency = new Map(
-  Object.entries(unitRow)
-    .filter(([key]) => key !== DATE_KEY && key !== QUOTE_CURRENCY)
-    .map(([currency, value]) => [currency, safeParseFloat(value)]),
+  currencies.map((currency) => [currency, safeParseFloat(unitRow[currency])]),
 );
 
 /** @type {Map<string, Map<Date, number>>} */
 const rateByDateByCurrency = new Map(
-  [...unitByCurrency.keys()].map((currency) => [currency, new Map()]),
+  currencies.map((currency) => [currency, new Map()]),
 );
 
 for (const rateRow of rateRows) {
