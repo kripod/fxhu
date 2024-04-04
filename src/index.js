@@ -32,7 +32,7 @@ if (unitRow == null) {
 
 const unitByCurrency = new Map(
   Object.entries(unitRow)
-    .filter(([key]) => key !== DATE_KEY)
+    .filter(([key]) => key !== DATE_KEY && key !== QUOTE_CURRENCY)
     .map(([currency, value]) => [currency, safeParseFloat(value)]),
 );
 
