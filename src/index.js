@@ -2,6 +2,7 @@ import * as fs from "node:fs";
 
 import * as XLSX from "xlsx";
 
+import { isCurrency } from "./utils/currency.js";
 import { stringifyDate } from "./utils/date.js";
 import { roundTo, safeParseFloat } from "./utils/number.js";
 
@@ -31,7 +32,7 @@ if (unitRow == null) {
 }
 
 const currencies = Object.keys(unitRow).filter(
-  (key) => key !== DATE_KEY && key !== QUOTE_CURRENCY,
+  (key) => isCurrency(key) && key !== QUOTE_CURRENCY,
 );
 
 const unitByCurrency = new Map(
