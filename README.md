@@ -1,4 +1,4 @@
-# mnb-fx-rates
+# fx-rates-hu
 
 Daily foreign exchange rates as published by the National Bank of Hungary (Magyar Nemzeti Bank, MNB).
 
