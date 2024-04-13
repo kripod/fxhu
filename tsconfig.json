@@ -5,6 +5,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "strict": true,
+    "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "target": "ES2022",
     "lib": ["ES2022"],
