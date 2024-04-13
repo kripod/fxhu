@@ -6,7 +6,6 @@ import { isCurrency } from "./utils/currency.js";
 import { stringifyDate } from "./utils/date.js";
 import { roundTo, safeParseFloat } from "./utils/number.js";
 
-const DATE_KEY = "Dátum/ISO";
 const QUOTE_CURRENCY = "HUF";
 const DEFAULT_FRACTION_DIGITS = 2;
 
@@ -45,25 +44,26 @@ const rateByDateByCurrency = new Map(
 );
 
 for (const rateRow of rateRows) {
-  const date = rateRow[DATE_KEY];
+  /** @type {Date | undefined} */
+  let date;
 
-  if (date instanceof Date) {
-    for (const [key, value] of Object.entries(rateRow)) {
-      if (key !== DATE_KEY) {
-        const unit = unitByCurrency.get(key);
-        if (unit != null) {
-          const offsetRate = safeParseFloat(value);
-          if (offsetRate != null) {
-            const rate = roundTo(
-              offsetRate / unit,
-              DEFAULT_FRACTION_DIGITS + Math.ceil(Math.log10(unit)),
-            );
+  for (const [key, value] of Object.entries(rateRow)) {
+    if (value instanceof Date) {
+      date = value;
+    } else if (date != null) {
+      const unit = unitByCurrency.get(key);
+      if (unit != null) {
+        const offsetRate = safeParseFloat(value);
+        if (offsetRate != null) {
+          const rate = roundTo(
+            offsetRate / unit,
+            DEFAULT_FRACTION_DIGITS + Math.ceil(Math.log10(unit)),
+          );
 
-            // Sanity check
-            if (rate > 0) {
-              const rateByDate = rateByDateByCurrency.get(key);
-              rateByDate?.set(date, rate);
-            }
+          // Sanity check
+          if (rate > 0) {
+            const rateByDate = rateByDateByCurrency.get(key);
+            rateByDate?.set(date, rate);
           }
         }
       }
