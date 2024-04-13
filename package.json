@@ -3,21 +3,27 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node --watch ./src/index.js",
-    "start": "node ./src/index.js",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "clean": "git clean --interactive -dx --exclude .env.local --exclude \".env.*.local\" --exclude node_modules/",
     "lint": "pnpm run \"/^lint:(?!fix)/\"",
+    "lint:astro": "astro check",
     "lint:format": "prettier --check .",
-    "lint:types": "tsc --noEmit",
     "lint:fix": "pnpm run \"/^lint:fix:/\"",
     "lint:fix:format": "prettier --write ."
   },
   "dependencies": {
+    "@astrojs/starlight": "^0.21.5",
+    "astro": "^4.6.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },
   "devDependencies": {
-    "@types/node": "^20.12.3",
+    "@astrojs/check": "^0.5.10",
+    "@types/node": "^20.12.7",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
+    "prettier-plugin-astro": "^0.13.0",
+    "typescript": "^5.4.5"
   },
   "packageManager": "pnpm@8.15.6"
 }

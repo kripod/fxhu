@@ -1,13 +1,10 @@
-export function roundTo(
-  /** @type {number} */ value,
-  /** @type {number} */ fractionDigits,
-) {
+export function roundTo(value: number, fractionDigits: number) {
   return Number(
     Math.round(Number(value + "e+" + fractionDigits)) + "e-" + fractionDigits,
   );
 }
 
-export function safeParseFloat(/** @type {unknown} */ value) {
+export function safeParseFloat(value: unknown) {
   const parsed =
     typeof value === "number"
       ? value

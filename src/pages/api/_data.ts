@@ -2,9 +2,8 @@ import * as fs from "node:fs";
 
 import * as XLSX from "xlsx";
 
-import { isCurrency } from "./utils/currency.js";
-import { stringifyDate } from "./utils/date.js";
-import { roundTo, safeParseFloat } from "./utils/number.js";
+import { currencyPair, isCurrency } from "../../utils/currency";
+import { roundTo, safeParseFloat } from "../../utils/number";
 
 const QUOTE_CURRENCY = "HUF";
 const DEFAULT_FRACTION_DIGITS = 2;
@@ -23,8 +22,9 @@ if (sheet == null) {
   throw new Error("Cannot open sheet");
 }
 
-/** @type {Record<string, unknown>[]} */
-const [unitRow, ...rateRows] = XLSX.utils.sheet_to_json(sheet, { UTC: true });
+const [unitRow, ...rateRows] = XLSX.utils.sheet_to_json<
+  Record<string, unknown>
+>(sheet, { UTC: true });
 
 if (unitRow == null) {
   throw new Error("Cannot parse currency units");
@@ -38,14 +38,12 @@ const unitByCurrency = new Map(
   currencies.map((currency) => [currency, safeParseFloat(unitRow[currency])]),
 );
 
-/** @type {Map<string, Map<Date, number>>} */
 const rateByDateByCurrency = new Map(
-  currencies.map((currency) => [currency, new Map()]),
+  currencies.map((currency) => [currency, new Map<Date, number>()]),
 );
 
 for (const rateRow of rateRows) {
-  /** @type {Date | undefined} */
-  let date;
+  let date: Date | undefined;
 
   for (const [key, value] of Object.entries(rateRow)) {
     if (value instanceof Date) {
@@ -71,11 +69,9 @@ for (const rateRow of rateRows) {
   }
 }
 
-for (const [currency, rateByDate] of rateByDateByCurrency) {
-  console.log(
-    currency + QUOTE_CURRENCY,
-    Object.fromEntries(
-      [...rateByDate].map(([date, rate]) => [stringifyDate(date), rate]),
-    ),
-  );
-}
+export const rateByDateByCurrencyPair = new Map(
+  [...rateByDateByCurrency].map(([currency, rateByDate]) => [
+    currencyPair(currency, QUOTE_CURRENCY),
+    rateByDate,
+  ]),
+);

@@ -1,8 +1,8 @@
-function padMonthOrDay(/** @type {number} */ value) {
+function padMonthOrDay(value: number) {
   return value.toString().padStart(2, "0");
 }
 
-export function stringifyDate(/** @type {Date} */ date) {
+export function stringifyDate(date: Date) {
   return (
     date.getUTCFullYear() +
     "-" +
