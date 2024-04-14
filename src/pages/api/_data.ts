@@ -1,4 +1,4 @@
-import * as fs from "node:fs";
+import * as fs from "node:fs/promises";
 
 import * as XLSX from "xlsx";
 
@@ -8,13 +8,14 @@ import { roundTo, safeParseFloat } from "../../utils/number";
 const QUOTE_CURRENCY = "HUF";
 const DEFAULT_FRACTION_DIGITS = 2;
 
-XLSX.set_fs(fs);
-
-const workbook = XLSX.readFile("./arfolyam.xlsx", {
-  cellDates: true,
-  cellText: false,
-  cellHTML: false,
-});
+const workbook = XLSX.read(
+  await fs.readFile(new URL("./_dataSourceSample.xlsx", import.meta.url)),
+  {
+    cellDates: true,
+    cellText: false,
+    cellHTML: false,
+  },
+);
 const sheetName = workbook.SheetNames[0];
 const sheet = sheetName != null ? workbook.Sheets[sheetName] : undefined;
 
