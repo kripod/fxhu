@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "fetch:mnb": "tsx ./src/pages/api/_scrapeData.ts",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -15,15 +16,16 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.21.5",
-    "astro": "^4.6.1",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
+    "astro": "^4.6.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.5.10",
     "@types/node": "^20.12.7",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "typescript": "^5.4.5"
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },
   "packageManager": "pnpm@8.15.6"
 }
