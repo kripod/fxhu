@@ -1,5 +1,6 @@
 import * as fs from "node:fs/promises";
 
+import { Agent, fetch } from "undici";
 import * as XLSX from "xlsx";
 
 import { currencyPair, isCurrency } from "../../utils/currency";
@@ -9,14 +10,20 @@ import { roundTo, safeParseFloat } from "../../utils/number";
 const QUOTE_CURRENCY = "HUF";
 const DEFAULT_FRACTION_DIGITS = 2;
 
-const workbook = XLSX.read(
-  await fs.readFile(new URL("./_data.xlsx", import.meta.url)),
-  {
-    cellDates: true,
-    cellText: false,
-    cellHTML: false,
-  },
+const response = await fetch(
+  "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx",
+  { dispatcher: new Agent({ connectTimeout: 300_000 }) },
 );
+if (!response.ok) {
+  throw new Error("Cannot fetch sheet");
+}
+
+const data = await response.arrayBuffer();
+const workbook = XLSX.read(data, {
+  cellDates: true,
+  cellText: false,
+  cellHTML: false,
+});
 const sheetName = workbook.SheetNames[0];
 const sheet = sheetName != null ? workbook.Sheets[sheetName] : undefined;
 
