@@ -16,17 +16,24 @@ const quoteYears = new Set(
 );
 
 export const getStaticPaths = (() => {
+  const quotesByYearBySymbol = new Map(
+    quoteRecords.map((quoteRecord) => {
+      const quotes = Object.entries(quoteRecord.data);
+      return [
+        quoteRecord.id,
+        Map.groupBy(quotes, ([date]) => new Date(date).getUTCFullYear()),
+      ];
+    }),
+  );
+
   return [...quoteYears].map((year) => ({
     params: { year: year.toString() },
     props: Object.fromEntries(
-      quoteRecords.map((quoteRecord) => {
-        const quotes = Object.entries(quoteRecord.data);
-        const years = quotes.map(([date]) => new Date(date).getUTCFullYear());
-        const start = years.indexOf(year);
-        const end = years.lastIndexOf(year) + 1;
+      [...quotesByYearBySymbol].map(([symbol, quotesByYear]) => {
+        const quotes = quotesByYear.get(year);
         return [
-          quoteRecord.id,
-          start >= 0 ? Object.fromEntries(quotes.slice(start, end)) : undefined,
+          symbol,
+          quotes != null ? Object.fromEntries(quotes) : undefined,
         ];
       }),
     ),
