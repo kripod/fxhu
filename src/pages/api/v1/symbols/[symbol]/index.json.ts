@@ -10,7 +10,9 @@ const quoteRecords = await getCollection("quoteRecords");
 
 export const getStaticPaths = (() => {
   return quoteRecords.map((quoteRecord) => ({
-    params: { symbol: quoteRecord.id },
+    params: {
+      symbol: quoteRecord.id,
+    },
     props: quoteRecord.data,
   }));
 }) satisfies GetStaticPaths;

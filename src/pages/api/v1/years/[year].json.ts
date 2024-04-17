@@ -4,30 +4,15 @@ import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-import { getCollection } from "astro:content";
 
-const quoteRecords = await getCollection("quoteRecords");
-
-const quoteDates = new Set(
-  quoteRecords.flatMap((quoteRecord) => Object.keys(quoteRecord.data)),
-);
-export const quoteYears = new Set(
-  [...quoteDates].map((date) => new Date(date).getUTCFullYear()),
-);
-
-export const quotesByYearBySymbol = new Map(
-  quoteRecords.map((quoteRecord) => {
-    const quotes = Object.entries(quoteRecord.data);
-    return [
-      quoteRecord.id,
-      Map.groupBy(quotes, ([date]) => new Date(date).getUTCFullYear()),
-    ];
-  }),
-);
+import { quotesByYearBySymbol } from "../symbols/[symbol]/[year].json";
+import { quoteYears } from "./index.json";
 
 export const getStaticPaths = (() => {
   return [...quoteYears].map((year) => ({
-    params: { year: year.toString() },
+    params: {
+      year: year.toString(),
+    },
     props: Object.fromEntries(
       [...quotesByYearBySymbol].map(([symbol, quotesByYear]) => {
         const quotes = quotesByYear.get(year);
