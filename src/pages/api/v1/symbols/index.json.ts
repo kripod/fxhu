@@ -1,14 +1,14 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 
-const rates = await getCollection("rates");
+const quoteRecords = await getCollection("quoteRecords");
 
 export const GET: APIRoute = () =>
   Response.json(
     Object.fromEntries(
-      rates.map((rate) => {
-        const lastEntry = Object.entries(rate.data).at(-1);
-        return [rate.id, lastEntry];
+      quoteRecords.map((quoteRecord) => {
+        const lastEntry = Object.entries(quoteRecord.data).at(-1);
+        return [quoteRecord.id, lastEntry];
       }),
     ),
   );

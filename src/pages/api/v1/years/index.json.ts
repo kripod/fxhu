@@ -1,13 +1,15 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 
-const rates = await getCollection("rates");
+const quoteRecords = await getCollection("quoteRecords");
 
 const currencyPairsByYear = new Map<number, string[]>();
-for (const rate of rates) {
+for (const quoteRecord of quoteRecords) {
   const years = [
     ...new Set(
-      Object.keys(rate.data).map((date) => new Date(date).getUTCFullYear()),
+      Object.keys(quoteRecord.data).map((date) =>
+        new Date(date).getUTCFullYear(),
+      ),
     ),
   ];
   for (const year of years) {
@@ -16,7 +18,7 @@ for (const rate of rates) {
       currencyPairs = [];
       currencyPairsByYear.set(year, currencyPairs);
     }
-    currencyPairs.push(rate.id);
+    currencyPairs.push(quoteRecord.id);
   }
 }
 

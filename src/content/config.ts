@@ -6,12 +6,12 @@ const docsCollection = defineCollection({
   schema: docsSchema(),
 });
 
-const ratesCollection = defineCollection({
+const quoteRecordsCollection = defineCollection({
   type: "data",
   schema: z.record(z.string(), z.number()),
 });
 
 export const collections = {
   docs: docsCollection,
-  rates: ratesCollection,
+  quoteRecords: quoteRecordsCollection,
 };

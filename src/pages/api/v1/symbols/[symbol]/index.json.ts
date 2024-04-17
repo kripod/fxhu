@@ -6,12 +6,12 @@ import type {
 } from "astro";
 import { getCollection } from "astro:content";
 
-const rates = await getCollection("rates");
+const quoteRecords = await getCollection("quoteRecords");
 
 export const getStaticPaths = (() => {
-  return rates.map((rate) => ({
-    params: { symbol: rate.id },
-    props: rate.data,
+  return quoteRecords.map((quoteRecord) => ({
+    params: { symbol: quoteRecord.id },
+    props: quoteRecord.data,
   }));
 }) satisfies GetStaticPaths;
 

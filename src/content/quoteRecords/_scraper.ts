@@ -88,17 +88,17 @@ for (const [currency, rateByDate] of rateByDateByCurrency) {
   );
 
   const prevContents = await file.readFile("utf8");
-  const entries = prevContents
+  const quotes = prevContents
     ? Object.entries<number>(JSON.parse(prevContents))
     : [];
 
   for (const [date, rate] of rateByDate) {
-    entries.push([stringifyDate(date), rate]);
+    quotes.push([stringifyDate(date), rate]);
   }
-  entries.sort(([aDate], [bDate]) => Date.parse(aDate) - Date.parse(bDate));
+  quotes.sort(([aDate], [bDate]) => Date.parse(aDate) - Date.parse(bDate));
 
   await file.write(
-    JSON.stringify(Object.fromEntries(entries), null, 2) + "\n",
+    JSON.stringify(Object.fromEntries(quotes), null, 2) + "\n",
     0,
   );
 }
