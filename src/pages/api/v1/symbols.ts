@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 
-import rateByDateByCurrencyPair from "../_data.json";
+const rates = await getCollection("rates");
 
-export const GET: APIRoute = () =>
-  Response.json(Object.keys(rateByDateByCurrencyPair));
+export const GET: APIRoute = () => Response.json(rates.map((rate) => rate.id));

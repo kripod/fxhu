@@ -1,16 +1,22 @@
-import type { APIRoute, GetStaticPaths } from "astro";
+import type {
+  APIRoute,
+  GetStaticPaths,
+  InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from "astro";
+import { getCollection } from "astro:content";
 
-import rateByDateByCurrencyPair from "../../_data.json";
+const rates = await getCollection("rates");
 
-type Props = Record<string, number>;
+export const getStaticPaths = (() => {
+  return rates.map((rate) => ({
+    params: { symbol: rate.id },
+    props: rate.data,
+  }));
+}) satisfies GetStaticPaths;
 
-export const GET: APIRoute<Props> = (context) => Response.json(context.props);
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-export const getStaticPaths: GetStaticPaths = () => {
-  return Object.entries(rateByDateByCurrencyPair).map(
-    ([currencyPair, rateByDate]) => ({
-      params: { symbol: currencyPair },
-      props: rateByDate satisfies Props,
-    }),
-  );
-};
+export const GET: APIRoute<Props, Params> = (context) =>
+  Response.json(context.props);
