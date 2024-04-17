@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 const quoteRecords = await getCollection("quoteRecords");
 
-const currencyPairsByYear = new Map<number, string[]>();
+const symbolsByYear = new Map<number, string[]>();
 for (const quoteRecord of quoteRecords) {
   const years = [
     ...new Set(
@@ -13,14 +13,14 @@ for (const quoteRecord of quoteRecords) {
     ),
   ];
   for (const year of years) {
-    let currencyPairs = currencyPairsByYear.get(year);
-    if (currencyPairs == null) {
-      currencyPairs = [];
-      currencyPairsByYear.set(year, currencyPairs);
+    let symbols = symbolsByYear.get(year);
+    if (symbols == null) {
+      symbols = [];
+      symbolsByYear.set(year, symbols);
     }
-    currencyPairs.push(quoteRecord.id);
+    symbols.push(quoteRecord.id);
   }
 }
 
 export const GET: APIRoute = () =>
-  Response.json(Object.fromEntries(currencyPairsByYear));
+  Response.json(Object.fromEntries(symbolsByYear));

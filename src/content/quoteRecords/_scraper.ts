@@ -79,11 +79,9 @@ for (const rateRow of rateRows) {
 }
 
 for (const [currency, rateByDate] of rateByDateByCurrency) {
+  const symbol = currencyPair(currency, QUOTE_CURRENCY);
   await using file = await fs.open(
-    new URL(
-      "./" + currencyPair(currency, QUOTE_CURRENCY) + ".json",
-      import.meta.url,
-    ),
+    new URL("./" + symbol + ".json", import.meta.url),
     fs.constants.O_RDWR | fs.constants.O_CREAT,
   );
 
