@@ -11,21 +11,21 @@ const quoteRecords = await getCollection("quoteRecords");
 const quoteDates = new Set(
   quoteRecords.flatMap((quoteRecord) => Object.keys(quoteRecord.data)),
 );
-const quoteYears = new Set(
+export const quoteYears = new Set(
   [...quoteDates].map((date) => new Date(date).getUTCFullYear()),
 );
 
-export const getStaticPaths = (() => {
-  const quotesByYearBySymbol = new Map(
-    quoteRecords.map((quoteRecord) => {
-      const quotes = Object.entries(quoteRecord.data);
-      return [
-        quoteRecord.id,
-        Map.groupBy(quotes, ([date]) => new Date(date).getUTCFullYear()),
-      ];
-    }),
-  );
+export const quotesByYearBySymbol = new Map(
+  quoteRecords.map((quoteRecord) => {
+    const quotes = Object.entries(quoteRecord.data);
+    return [
+      quoteRecord.id,
+      Map.groupBy(quotes, ([date]) => new Date(date).getUTCFullYear()),
+    ];
+  }),
+);
 
+export const getStaticPaths = (() => {
   return [...quoteYears].map((year) => ({
     params: { year: year.toString() },
     props: Object.fromEntries(
