@@ -67,7 +67,7 @@ for (const rateRow of rateRows) {
             DEFAULT_FRACTION_DIGITS + Math.ceil(Math.log10(unit)),
           );
 
-          // Sanity check
+          // Validation
           if (rate > 0) {
             const rateByDate = rateByDateByCurrency.get(key);
             rateByDate?.set(date, rate);
