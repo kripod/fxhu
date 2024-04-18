@@ -1,0 +1,29 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FXHU",
+    "license": {
+      "name": "MIT",
+      "identifier": "MIT"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://fxhu.kripod.dev/api/v1"
+    }
+  ],
+  "paths": {
+    "/symbols.json": {},
+    "/symbols/{symbol}.json": {},
+    "/symbols/{symbol}/{year}.json": {},
+    "/years.json": {},
+    "/years/{year}.json": {}
+  },
+  "components": {
+    "parameters": {}
+  },
+  "externalDocs": {
+    "url": "https://fxhu.kripod.dev/"
+  }
+}
