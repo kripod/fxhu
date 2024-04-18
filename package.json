@@ -1,5 +1,5 @@
 {
-  "name": "fx-rates-hu",
+  "name": "@kripod/fxhu",
   "private": true,
   "type": "module",
   "scripts": {

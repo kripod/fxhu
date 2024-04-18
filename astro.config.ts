@@ -4,9 +4,9 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "FX Rates HU",
+      title: "FXHU",
       social: {
-        github: "https://github.com/kripod/fx-rates-hu",
+        github: "https://github.com/kripod/fxhu",
       },
       pagefind: false,
     }),
