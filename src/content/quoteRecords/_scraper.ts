@@ -7,11 +7,18 @@ import { currencyPair, isCurrency } from "../../utils/currency";
 import { stringifyDate } from "../../utils/date";
 import { roundTo, safeParseFloat } from "../../utils/number";
 
+const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
 const QUOTE_CURRENCY = "HUF";
 const DEFAULT_FRACTION_DIGITS = 2;
 
 const response = await fetch(
-  "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx",
+  process.argv.includes("--full", 1)
+    ? SOURCE_URL
+    : SOURCE_URL +
+        "?" +
+        new URLSearchParams({
+          year: new Date().getUTCFullYear().toString(),
+        }),
   { dispatcher: new Agent({ connectTimeout: 300_000 }) },
 );
 if (!response.ok) {
