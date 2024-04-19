@@ -9,7 +9,7 @@ import { quotesByYearBySymbol } from "../symbols/[symbol]/[year].json";
 import { quoteYears } from "./index.json";
 
 export const getStaticPaths = (() => {
-  return [...quoteYears].map((year) => ({
+  return quoteYears.map((year) => ({
     params: {
       year: year.toString(),
     },
