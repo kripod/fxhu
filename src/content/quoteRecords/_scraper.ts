@@ -8,7 +8,7 @@ import { roundTo, safeParseFloat } from "../../utils/number";
 
 const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
 const QUOTE_CURRENCY = "HUF";
-const DEFAULT_FRACTION_DIGITS = 2;
+const MAX_MINOR_UNIT = 8;
 
 const response = await fetch(
   process.argv.includes("--full", 1)
@@ -65,10 +65,7 @@ for (const rateRow of rateRows) {
       if (offsetRate != null) {
         const unit = unitByCurrency.get(key);
         if (unit != null) {
-          const rate = roundTo(
-            offsetRate / unit,
-            DEFAULT_FRACTION_DIGITS + Math.ceil(Math.log10(unit)),
-          );
+          const rate = roundTo(offsetRate / unit, MAX_MINOR_UNIT);
 
           // Validation
           if (rate > 0) {
