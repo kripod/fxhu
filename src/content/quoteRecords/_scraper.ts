@@ -60,9 +60,7 @@ for (const rateRow of rateRows) {
   let date: Date | undefined;
 
   for (const [key, value] of Object.entries(rateRow)) {
-    if (value instanceof Date) {
-      date = value;
-    } else if (date != null) {
+    if (date != null) {
       const unit = unitByCurrency.get(key);
       if (unit != null) {
         const offsetRate = safeParseFloat(value);
@@ -79,6 +77,8 @@ for (const rateRow of rateRows) {
           }
         }
       }
+    } else if (value instanceof Date) {
+      date = value;
     }
   }
 }
