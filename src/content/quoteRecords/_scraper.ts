@@ -1,6 +1,5 @@
 import * as fs from "node:fs/promises";
 
-import { Agent, fetch } from "undici";
 import * as XLSX from "xlsx";
 
 import { currencyPair, isCurrency } from "../../utils/currency";
@@ -19,7 +18,6 @@ const response = await fetch(
         new URLSearchParams({
           year: new Date().getUTCFullYear().toString(),
         }),
-  { dispatcher: new Agent({ connectTimeout: 300_000 }) },
 );
 if (!response.ok) {
   throw new Error("Cannot fetch sheet");

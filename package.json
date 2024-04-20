@@ -25,7 +25,6 @@
     "prettier-plugin-astro": "0.13.0",
     "tsx": "4.7.2",
     "typescript": "5.4.5",
-    "undici": "6.13.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   },
   "packageManager": "pnpm@8.15.6"
