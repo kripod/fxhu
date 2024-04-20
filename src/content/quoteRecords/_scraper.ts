@@ -61,10 +61,10 @@ for (const rateRow of rateRows) {
 
   for (const [key, value] of Object.entries(rateRow)) {
     if (date != null) {
-      const unit = unitByCurrency.get(key);
-      if (unit != null) {
-        const offsetRate = safeParseFloat(value);
-        if (offsetRate != null) {
+      const offsetRate = safeParseFloat(value);
+      if (offsetRate != null) {
+        const unit = unitByCurrency.get(key);
+        if (unit != null) {
           const rate = roundTo(
             offsetRate / unit,
             DEFAULT_FRACTION_DIGITS + Math.ceil(Math.log10(unit)),
