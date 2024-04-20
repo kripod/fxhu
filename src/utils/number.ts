@@ -10,6 +10,6 @@ export function safeParseFloat(value: unknown) {
       ? value
       : Number(value?.toString().trim() || Number.NaN);
   return Number.isFinite(parsed)
-    ? parsed || 0 // Treat `-0` as `0`
+    ? parsed || 0 // Maps `-0` to `+0`
     : null;
 }
