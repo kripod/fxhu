@@ -41,7 +41,7 @@ const [unitRow, ...rateRows] = XLSX.utils.sheet_to_json<
 >(sheet, { UTC: true });
 
 if (unitRow == null) {
-  throw new Error("Cannot parse currency units");
+  throw new Error("Cannot parse minor units of currencies");
 }
 
 const currencies = Object.keys(unitRow).filter(
