@@ -44,8 +44,6 @@
     "schemas": {
       "Quote": {
         "type": "array",
-        "minItems": 2,
-        "maxItems": 2,
         "prefixItems": [
           {
             "type": "string",
@@ -54,7 +52,9 @@
           {
             "type": "number"
           }
-        ]
+        ],
+        "maxItems": 2,
+        "minItems": 2
       },
       "QuoteBySymbol": {
         "type": "object",
