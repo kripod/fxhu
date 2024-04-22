@@ -42,22 +42,25 @@
   },
   "components": {
     "schemas": {
+      "Quote": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [
+          {
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
       "QuoteBySymbol": {
         "type": "object",
         "patternProperties": {
           "^[A-Z]+$": {
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "prefixItems": [
-              {
-                "type": "string",
-                "format": "date"
-              },
-              {
-                "type": "number"
-              }
-            ]
+            "$ref": "#/components/schemas/Quote"
           }
         },
         "additionalProperties": false
