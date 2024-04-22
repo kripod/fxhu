@@ -25,8 +25,9 @@
                   "$ref": "#/components/schemas/QuoteBySymbol"
                 },
                 "example": {
-                  "EURHUF": ["2024-04-12", 391.76],
-                  "USDHUF": ["2024-04-12", 367.13]
+                  "EURHUF": ["2000-01-04", 254.47],
+                  "JPYHUF": ["2000-01-04", 2.4204],
+                  "USDHUF": ["2000-01-04", 248.82]
                 }
               }
             }
