@@ -1,4 +1,5 @@
 {
+  "$schema": "https://spec.openapis.org/oas/3.1/schema-base/2022-10-07",
   "openapi": "3.1.0",
   "info": {
     "title": "FXHU",
@@ -14,13 +15,53 @@
     }
   ],
   "paths": {
-    "/symbols.json": {},
+    "/symbols.json": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteBySymbol"
+                },
+                "example": {
+                  "EURHUF": ["2024-04-12", 391.76],
+                  "USDHUF": ["2024-04-12", 367.13]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/symbols/{symbol}.json": {},
     "/symbols/{symbol}/{year}.json": {},
     "/years.json": {},
     "/years/{year}.json": {}
   },
   "components": {
+    "schemas": {
+      "QuoteBySymbol": {
+        "type": "object",
+        "patternProperties": {
+          "^(?<baseCurrency>[A-Z]{3})(?<quoteCurrency>[A-Z]{3})$": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "parameters": {}
   },
   "externalDocs": {
