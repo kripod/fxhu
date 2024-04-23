@@ -22,7 +22,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/QuoteBySymbol"
+                  "type": "object",
+                  "patternProperties": {
+                    "^[A-Z]+$": {
+                      "$ref": "#/components/schemas/Quote"
+                    }
+                  },
+                  "additionalProperties": false
                 },
                 "example": {
                   "EURHUF": ["2000-01-04", 254.47],
@@ -37,7 +43,35 @@
     },
     "/symbols/{symbol}.json": {},
     "/symbols/{symbol}/{year}.json": {},
-    "/years.json": {},
+    "/years.json": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^\\d+$": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Symbol"
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "example": {
+                  "1998": ["JPYHUF", "USDHUF", "XEUHUF"],
+                  "1999": ["EURHUF", "JPYHUF", "USDHUF"],
+                  "2000": ["EURHUF", "JPYHUF", "USDHUF"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/years/{year}.json": {}
   },
   "components": {
@@ -56,14 +90,9 @@
         "maxItems": 2,
         "minItems": 2
       },
-      "QuoteBySymbol": {
-        "type": "object",
-        "patternProperties": {
-          "^[A-Z]+$": {
-            "$ref": "#/components/schemas/Quote"
-          }
-        },
-        "additionalProperties": false
+      "Symbol": {
+        "type": "string",
+        "pattern": "^[A-Z]+$"
       }
     },
     "parameters": {}
