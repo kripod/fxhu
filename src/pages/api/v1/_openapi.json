@@ -41,7 +41,43 @@
         }
       }
     },
-    "/symbols/{symbol}.json": {},
+    "/symbols/{symbol}.json": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[+-\\\\d]+$": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "example": {
+                  "1999-12-29": 254.92,
+                  "2000-01-04": 254.47,
+                  "2000-01-05": 254.48
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "symbol",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/Symbol"
+          },
+          "example": "EURHUF"
+        }
+      ]
+    },
     "/symbols/{symbol}/{year}.json": {},
     "/years.json": {
       "get": {
