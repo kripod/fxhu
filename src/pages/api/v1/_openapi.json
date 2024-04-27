@@ -31,9 +31,9 @@
                   "additionalProperties": false
                 },
                 "example": {
-                  "EURHUF": ["2000-01-04", 254.47],
-                  "JPYHUF": ["2000-01-04", 2.4204],
-                  "USDHUF": ["2000-01-04", 248.82]
+                  "EURHUF": ["2000-01-05", 254.48],
+                  "JPYHUF": ["2000-01-05", 2.3809],
+                  "USDHUF": ["2000-01-05", 245.57]
                 }
               }
             }
@@ -52,7 +52,7 @@
                 "schema": {
                   "type": "object",
                   "patternProperties": {
-                    "^\\d+$": {
+                    "^\\\\d+$": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Symbol"
