@@ -48,13 +48,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "patternProperties": {
-                    "^[+-\\\\d]+$": {
-                      "type": "number"
-                    }
-                  },
-                  "additionalProperties": false
+                  "$ref": "#/components/schemas/QuoteRecord"
                 },
                 "example": {
                   "1999-12-29": 254.92,
@@ -68,17 +62,37 @@
       },
       "parameters": [
         {
-          "name": "symbol",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "$ref": "#/components/schemas/Symbol"
-          },
-          "example": "EURHUF"
+          "$ref": "#/components/parameters/symbol"
         }
       ]
     },
-    "/symbols/{symbol}/{year}.json": {},
+    "/symbols/{symbol}/{year}.json": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteRecord"
+                },
+                "example": {
+                  "2000-01-04": 254.47,
+                  "2000-01-05": 254.48
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/symbol"
+        },
+        {
+          "$ref": "#/components/parameters/year"
+        }
+      ]
+    },
     "/years.json": {
       "get": {
         "responses": {
@@ -126,12 +140,40 @@
         "maxItems": 2,
         "minItems": 2
       },
+      "QuoteRecord": {
+        "type": "object",
+        "patternProperties": {
+          "^[+-\\\\d]+$": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
       "Symbol": {
         "type": "string",
         "pattern": "^[A-Z]+$"
       }
     },
-    "parameters": {}
+    "parameters": {
+      "symbol": {
+        "name": "symbol",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/Symbol"
+        },
+        "example": "EURHUF"
+      },
+      "year": {
+        "name": "year",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "example": 2000
+      }
+    }
   },
   "externalDocs": {
     "url": "https://fxhu.kripod.dev/"
