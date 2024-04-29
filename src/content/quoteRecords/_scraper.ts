@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 
 import { currencyPair, isCurrency } from "../../utils/currency";
 import { stringifyDate } from "../../utils/date";
-import { closestSafeFloat, safeParseFloat } from "../../utils/number";
+import { roundToSafePrecision, safeParseFloat } from "../../utils/number";
 
 const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
 const QUOTE_CURRENCY = "HUF";
@@ -65,7 +65,7 @@ for (const rateRow of rateRows) {
       if (offsetRate != null) {
         const unit = unitByCurrency.get(key);
         if (unit != null) {
-          const rate = closestSafeFloat(offsetRate / unit);
+          const rate = roundToSafePrecision(offsetRate / unit);
 
           // Validation
           if (rate > 0) {

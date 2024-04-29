@@ -4,7 +4,7 @@ const MAX_SAFE_PRECISION = Math.trunc(
   (BINARY64_PRECISION - 1) * Math.log10(BINARY64_BASE),
 );
 
-export function closestSafeFloat(value: number) {
+export function roundToSafePrecision(value: number) {
   return Number(value.toPrecision(MAX_SAFE_PRECISION));
 }
 
