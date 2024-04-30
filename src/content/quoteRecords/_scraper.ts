@@ -8,7 +8,6 @@ import { roundToSafePrecision, safeParseFloat } from "../../utils/number";
 
 const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
 const QUOTE_CURRENCY = "HUF";
-const MAX_MINOR_UNIT = 8;
 
 const response = await fetch(
   process.argv.includes("--full", 1)
