@@ -10,13 +10,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
-      - run: pnpm install
+      - uses: ./.github/actions/bootstrap
       - run: pnpm run fetch:mnb ${${{ github.event.schedule == '55 16 * * 1-5' }}:+--full}
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
