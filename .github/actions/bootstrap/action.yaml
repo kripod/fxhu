@@ -4,7 +4,6 @@ description: Set up Node.js environment and then install dependencies
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v4
     - uses: pnpm/action-setup@v3
     - uses: actions/setup-node@v4
       with:
