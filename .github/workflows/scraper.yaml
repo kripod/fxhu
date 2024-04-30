@@ -1,0 +1,23 @@
+name: Scraper
+on:
+  schedule:
+    - cron: "25/5 9,10 * * 1-5"
+    - cron: "55 16 * * 1-5"
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm run fetch:mnb ${${{ github.event.schedule == '55 16 * * 1-5' }}:+--full}
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(data): update"
