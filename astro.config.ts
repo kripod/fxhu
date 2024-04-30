@@ -1,5 +1,6 @@
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
+import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
 export default defineConfig({
   site: "https://fxhu.kripod.dev/",
@@ -9,7 +10,17 @@ export default defineConfig({
       social: {
         github: "https://github.com/kripod/fxhu",
       },
-      pagefind: false,
+      plugins: [
+        starlightOpenAPI([
+          {
+            base: "docs/v1",
+            collapsed: false,
+            label: "Reference",
+            schema: "./src/pages/api/v1/_openapi.json",
+          },
+        ]),
+      ],
+      sidebar: [...openAPISidebarGroups],
     }),
   ],
 });

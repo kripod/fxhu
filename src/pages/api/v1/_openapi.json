@@ -4,8 +4,8 @@
   "info": {
     "title": "FXHU",
     "license": {
-      "name": "MIT License",
-      "identifier": "MIT"
+      "name": "MIT",
+      "url": "https://opensource.org/license/mit"
     },
     "version": "1.0"
   },
@@ -208,8 +208,5 @@
         "example": 2000
       }
     }
-  },
-  "externalDocs": {
-    "url": "https://fxhu.kripod.dev/"
   }
 }

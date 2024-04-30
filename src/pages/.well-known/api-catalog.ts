@@ -14,6 +14,12 @@ export const GET: APIRoute = (context) =>
               type: mediaType,
             },
           ],
+          "service-doc": [
+            {
+              href: new URL("/docs/v1/", context.site),
+              type: "text/html",
+            },
+          ],
         },
       ],
     },
