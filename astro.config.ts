@@ -3,7 +3,7 @@ import { defineConfig } from "astro/config";
 import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
 export default defineConfig({
-  site: "https://fxhu.kripod.dev/",
+  site: "https://fxhu.kripod.dev",
   integrations: [
     starlight({
       title: "FXHU",
