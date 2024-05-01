@@ -2,7 +2,6 @@ import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
-import { buildId } from "./src/utils/buildId";
 import { socialImageHeight, socialImageWidth } from "./src/utils/socialImage";
 
 export default defineConfig({
@@ -45,7 +44,7 @@ export default defineConfig({
           tag: "meta",
           attrs: {
             property: "og:image",
-            content: "/assets/social-image.png?v=" + buildId,
+            content: "/assets/social-image.png",
           },
         },
         {
