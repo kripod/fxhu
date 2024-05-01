@@ -155,7 +155,12 @@
             }
           }
         }
-      }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/year"
+        }
+      ]
     }
   },
   "components": {
