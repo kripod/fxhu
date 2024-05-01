@@ -2,13 +2,24 @@ import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
+import { buildId } from "./src/utils/buildId";
+import { socialImageHeight, socialImageWidth } from "./src/utils/socialImage";
+
 export default defineConfig({
   site: "https://fxhu.kripod.dev",
+  trailingSlash:
+    // TODO: Use 'always', see: https://github.com/withastro/astro/issues/10149
+    import.meta.env.PROD ? "always" : "ignore",
   integrations: [
     starlight({
       title: "FXHU",
+      description:
+        "Exchange rates API sourced from the National Bank of Hungary (Magyar Nemzeti Bank, MNB).",
       social: {
         github: "https://github.com/kripod/fxhu",
+      },
+      editLink: {
+        baseUrl: "https://github.com/kripod/fxhu/edit/main/",
       },
       plugins: [
         starlightOpenAPI([
@@ -21,6 +32,44 @@ export default defineConfig({
         ]),
       ],
       sidebar: [...openAPISidebarGroups],
+      head: [
+        {
+          tag: "link",
+          attrs: {
+            rel: "icon",
+            href: "/favicon.ico",
+            sizes: "48x48",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "/assets/social-image.png?v=" + buildId,
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image:width",
+            content: socialImageWidth.toString(),
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image:height",
+            content: socialImageHeight.toString(),
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:card",
+            content: "summary_large_image",
+          },
+        },
+      ],
     }),
   ],
 });

@@ -1,6 +1,6 @@
 # FXHU
 
-Daily foreign exchange rates as published by the National Bank of Hungary (Magyar Nemzeti Bank, MNB).
+Exchange rates API sourced from the National Bank of Hungary (Magyar Nemzeti Bank, MNB).
 
 ## Rate-setting methodology
 
