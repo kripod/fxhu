@@ -1,7 +1,5 @@
 import type { APIRoute } from "astro";
 
-import { mediaType } from "../api/v1/openapi.json";
-
 export const GET: APIRoute = (context) =>
   Response.json(
     {
@@ -11,7 +9,7 @@ export const GET: APIRoute = (context) =>
           "service-desc": [
             {
               href: new URL("/api/v1/openapi.json", context.site),
-              type: mediaType,
+              type: "application/openapi+json",
             },
           ],
           "service-doc": [
