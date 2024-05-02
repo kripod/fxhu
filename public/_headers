@@ -14,3 +14,9 @@ https://:project.pages.dev/*
 
 /_astro/*
   cache-control: public, max-age=31536000, immutable
+
+/.well-known/api-catalog
+  content-type: application/linkset+json
+
+/*/openapi.json
+  content-type: application/openapi+json
