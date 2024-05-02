@@ -1,0 +1,4 @@
+user-agent: *
+allow: /
+
+sitemap: https://fxhu.kripod.dev/sitemap-index.xml
