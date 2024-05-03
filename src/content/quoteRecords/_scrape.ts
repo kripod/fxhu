@@ -12,11 +12,7 @@ const QUOTE_CURRENCY = "HUF";
 const response = await fetch(
   process.argv.includes("--full", 1)
     ? SOURCE_URL
-    : SOURCE_URL +
-        "?" +
-        new URLSearchParams({
-          year: new Date().getUTCFullYear().toString(),
-        }),
+    : `${SOURCE_URL}?year=${new Date().getUTCFullYear()}`,
 );
 if (!response.ok) {
   throw new Error("Cannot fetch sheet");
@@ -82,7 +78,7 @@ for (const rateRow of rateRows) {
 for (const [currency, rateByDate] of rateByDateByCurrency) {
   const symbol = currencyPair(currency, QUOTE_CURRENCY);
   await using file = await fs.open(
-    new URL("./" + symbol + ".json", import.meta.url),
+    new URL(`./${symbol}.json`, import.meta.url),
     fs.constants.O_RDWR | fs.constants.O_CREAT,
   );
 
