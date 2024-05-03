@@ -44,7 +44,7 @@ export default defineConfig({
           tag: "link",
           attrs: {
             rel: "apple-touch-icon",
-            href: "/logo-maskable-180.png",
+            href: "/assets/logo-maskable-180.png",
             sizes: "180x180",
           },
         },
