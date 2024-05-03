@@ -1,6 +1,7 @@
 name: Scraper
 on:
   schedule:
+    # https://www.mnb.hu/en/statistics/statistical-data-and-information/statistical-time-series/exchange-rates/fixing-and-publication-of-the-official-exchange-rates
     - cron: "25/5 9,10 * * 1-5"
     - cron: "55 16 * * 1-5"
 
