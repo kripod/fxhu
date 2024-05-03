@@ -4,8 +4,10 @@ import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
 import { socialImageHeight, socialImageWidth } from "./src/utils/socialImage";
 
+const site = "https://fxhu.kripod.dev";
+
 export default defineConfig({
-  site: "https://fxhu.kripod.dev",
+  site,
   trailingSlash:
     // TODO: Use 'always', see: https://github.com/withastro/astro/issues/10149
     import.meta.env.PROD ? "always" : "ignore",
@@ -52,7 +54,7 @@ export default defineConfig({
           tag: "meta",
           attrs: {
             property: "og:image",
-            content: "/assets/social-image.png",
+            content: new URL("/assets/social-image.png", site).toString(),
           },
         },
         {
