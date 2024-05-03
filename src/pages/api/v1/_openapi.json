@@ -17,8 +17,10 @@
   "paths": {
     "/symbols.json": {
       "get": {
+        "description": "Returns all symbols and their last quotes.",
         "responses": {
           "200": {
+            "description": "A record of symbols mapped to quotes.",
             "content": {
               "application/json": {
                 "schema": {
@@ -43,8 +45,10 @@
     },
     "/symbols/{symbol}.json": {
       "get": {
+        "description": "Returns all quotes for a symbol.",
         "responses": {
           "200": {
+            "description": "A record of dates mapped to rates.",
             "content": {
               "application/json": {
                 "schema": {
@@ -68,8 +72,10 @@
     },
     "/symbols/{symbol}/{year}.json": {
       "get": {
+        "description": "Returns quotes for a symbol, filtered by year.",
         "responses": {
           "200": {
+            "description": "A record of dates mapped to rates.",
             "content": {
               "application/json": {
                 "schema": {
@@ -95,8 +101,10 @@
     },
     "/years.json": {
       "get": {
+        "description": "Returns all years and the symbols within.",
         "responses": {
           "200": {
+            "description": "A record of years mapped to symbol lists.",
             "content": {
               "application/json": {
                 "schema": {
@@ -124,8 +132,10 @@
     },
     "/years/{year}.json": {
       "get": {
+        "description": "Returns quotes for all symbols, filtered by year.",
         "responses": {
           "200": {
+            "description": "A record of symbols mapped to quote records.",
             "content": {
               "application/json": {
                 "schema": {
@@ -197,6 +207,7 @@
       "symbol": {
         "name": "symbol",
         "in": "path",
+        "description": "Currency pair as the concatenation of ISO 4217 currency codes.",
         "required": true,
         "schema": {
           "$ref": "#/components/schemas/Symbol"
