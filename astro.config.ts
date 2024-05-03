@@ -13,7 +13,7 @@ export default defineConfig({
     starlight({
       title: "FXHU",
       description:
-        "Exchange rates API sourced from the National Bank of Hungary (Magyar Nemzeti Bank, MNB).",
+        "Exchange rates API sourced from the National Bank of Hungary (Magyar Nemzeti Bank, MNB). Unlimited & CORS-enabled.",
       social: {
         github: "https://github.com/kripod/fxhu",
       },
