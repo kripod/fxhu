@@ -41,6 +41,14 @@ export default defineConfig({
           },
         },
         {
+          tag: "link",
+          attrs: {
+            rel: "apple-touch-icon",
+            href: "/favicon-180.png",
+            sizes: "180x180",
+          },
+        },
+        {
           tag: "meta",
           attrs: {
             property: "og:image",
