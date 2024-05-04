@@ -10,7 +10,7 @@ export default defineConfig({
   site,
   trailingSlash:
     // TODO: Use 'always', see: https://github.com/withastro/astro/issues/10149
-    import.meta.env.PROD ? "always" : "ignore",
+    process.env.NODE_ENV === "production" ? "always" : "ignore",
   integrations: [
     starlight({
       title: "FXHU",
