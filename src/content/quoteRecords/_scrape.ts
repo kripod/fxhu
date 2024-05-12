@@ -2,12 +2,15 @@ import * as fs from "node:fs/promises";
 
 import * as XLSX from "xlsx";
 
-import { currencyPair, isCurrency } from "../../utils/currency";
+import {
+  currencyPairSymbol,
+  isCurrency,
+  QUOTE_CURRENCY,
+} from "../../utils/currency";
 import { stringifyDate } from "../../utils/date";
 import { roundToSafePrecision, safeParseFloat } from "../../utils/number";
 
 const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
-const QUOTE_CURRENCY = "HUF";
 
 const response = await fetch(
   process.argv.includes("--full", 1)
@@ -76,7 +79,7 @@ for (const rateRow of rateRows) {
 }
 
 for (const [currency, rateByDate] of rateByDateByCurrency) {
-  const symbol = currencyPair(currency, QUOTE_CURRENCY);
+  const symbol = currencyPairSymbol(currency, QUOTE_CURRENCY);
   await using file = await fs.open(
     new URL(`./${symbol}.json`, import.meta.url),
     fs.constants.O_RDWR | fs.constants.O_CREAT,
