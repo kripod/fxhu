@@ -1,4 +1,5 @@
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
@@ -79,6 +80,11 @@ export default defineConfig({
           },
         },
       ],
+      customCss: ["./src/custom-styles.css"],
+    }),
+    tailwind({
+      applyBaseStyles: false,
+      nesting: true,
     }),
   ],
 });
