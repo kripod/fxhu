@@ -1,3 +1,5 @@
+const CURRENCY_LENGTH = 3;
+
 export const QUOTE_CURRENCY = "HUF";
 
 export function isCurrency(value: string) {
@@ -9,4 +11,8 @@ export function currencyPairSymbol(
   quoteCurrency: string,
 ) {
   return baseCurrency + quoteCurrency;
+}
+
+export function baseCurrencyFromSymbol(symbol: string) {
+  return symbol.slice(0, CURRENCY_LENGTH);
 }

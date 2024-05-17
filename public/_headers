@@ -1,6 +1,6 @@
 https://*/
   # https://csp-evaluator.withgoogle.com/
-  content-security-policy: default-src 'self'; img-src data: 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
+  content-security-policy: default-src 'self'; img-src data: https://api.iconify.design 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
 
   # https://web.dev/articles/coop-coep
   cross-origin-embedder-policy: require-corp

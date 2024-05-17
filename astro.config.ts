@@ -1,3 +1,4 @@
+import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
@@ -33,7 +34,15 @@ export default defineConfig({
           },
         ]),
       ],
-      sidebar: [...openAPISidebarGroups],
+      sidebar: [
+        ...openAPISidebarGroups,
+        {
+          label: "Demo",
+          autogenerate: {
+            directory: "demo",
+          },
+        },
+      ],
       head: [
         {
           tag: "link",
@@ -86,5 +95,6 @@ export default defineConfig({
       applyBaseStyles: false,
       nesting: true,
     }),
+    react(),
   ],
 });

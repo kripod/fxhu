@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+
+import { baseCurrencyFromSymbol, QUOTE_CURRENCY } from "../utils/currency";
+import { isDateStale } from "../utils/date";
+import { CurrencySelectUncontrolled } from "./CurrencySelectUncontrolled";
+
+const quoteRecords = await getCollection("quoteRecords");
+const currencies = [
+  QUOTE_CURRENCY,
+  ...quoteRecords
+    .filter((quoteRecord) => {
+      const lastQuote = Object.entries(quoteRecord.data).at(-1);
+      if (lastQuote != null) {
+        const [lastDate] = lastQuote;
+        return !isDateStale(new Date(lastDate));
+      }
+      return false;
+    })
+    .map((quoteRecord) => baseCurrencyFromSymbol(quoteRecord.id)),
+] as const;
+---
+
+<div class="not-content">
+  <CurrencySelectUncontrolled client:load label="Currency" items={currencies} />
+</div>
