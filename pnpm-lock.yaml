@@ -30,8 +30,8 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       css-homogenizer:
-        specifier: 3.2.1
-        version: 3.2.1(react@18.3.1)
+        specifier: 4.0.0
+        version: 4.0.0(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1266,8 +1266,8 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
-  css-homogenizer@3.2.1:
-    resolution: {integrity: sha512-BCCvFJ9vnaket4ycMeWYTPFy/MUm+iRJWlRA/nPtp5S8dtpjPE6IueZnAvZuYXvG9hURA/EbiQuzG8C0w4cjdA==}
+  css-homogenizer@4.0.0:
+    resolution: {integrity: sha512-SgmGeeksD7xvJULKUBz0c2pOD8/b25FTpyvculoORlWwdITWBLzocRs7ELOe7AFuPEuCxwiVv2J3BS1bjTUy9A==}
     peerDependencies:
       react: ^0.14.10 || ^15.7.0 || ^16.14.0 || >=17
     peerDependenciesMeta:
@@ -4114,7 +4114,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  css-homogenizer@3.2.1(react@18.3.1):
+  css-homogenizer@4.0.0(react@18.3.1):
     optionalDependencies:
       react: 18.3.1
 
