@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 import { baseCurrencyFromSymbol, QUOTE_CURRENCY } from "../utils/currency";
 import { isDateStale } from "../utils/date";
-import { CurrencySelectUncontrolled } from "./CurrencySelectUncontrolled";
+import { CurrencySelect } from "./CurrencySelect";
 
 const quoteRecords = await getCollection("quoteRecords");
 const currencies = [
@@ -22,5 +22,5 @@ const currencies = [
 ---
 
 <div class="not-content">
-  <CurrencySelectUncontrolled client:load label="Currency" items={currencies} />
+  <CurrencySelect client:load label="Currency" items={currencies} />
 </div>

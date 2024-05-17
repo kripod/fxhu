@@ -6,16 +6,27 @@ import {
   SelectLabel,
   SelectPopover,
   SelectProvider,
+  useSelectContext,
 } from "@ariakit/react";
 import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
 
 import { CountryFlag } from "./CountryFlag";
 
+type SelectContextConsumerProps = React.ConsumerProps<
+  ReturnType<typeof useSelectContext>
+>;
+
+function SelectContextConsumer({ children }: SelectContextConsumerProps) {
+  const store = useSelectContext();
+  return children(store);
+}
+
 export interface CurrencySelectProps<T extends string> {
   label?: React.ReactNode;
   items: readonly T[];
-  value: T;
+  defaultValue?: T;
+  value?: T;
   className?: string;
   onChange?: (value: T) => void;
 }
@@ -23,12 +34,17 @@ export interface CurrencySelectProps<T extends string> {
 export function CurrencySelect<T extends string>({
   label,
   items,
-  value,
+  defaultValue,
+  value: controlledValue,
   className,
   onChange,
 }: CurrencySelectProps<T>) {
   return (
-    <SelectProvider value={value} setValue={onChange}>
+    <SelectProvider
+      defaultValue={defaultValue}
+      value={controlledValue}
+      setValue={onChange}
+    >
       <SelectLabel>{label}</SelectLabel>
       <Select
         className={clsx(
@@ -37,7 +53,14 @@ export function CurrencySelect<T extends string>({
           "inline-flex h-8 items-center gap-x-2 bg-gray-200 px-2 text-base dark:bg-gray-700",
         )}
       >
-        <CurrencySelectItemContent currency={value} />
+        <SelectContextConsumer>
+          {(store) => {
+            const value = store?.useState().value;
+            return typeof value === "string" ? (
+              <CurrencySelectItemContent currency={value} />
+            ) : null;
+          }}
+        </SelectContextConsumer>
         <SelectArrow />
       </Select>
       <SelectPopover modal gutter={8} sameWidth>
