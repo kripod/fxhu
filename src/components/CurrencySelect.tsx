@@ -53,7 +53,7 @@ export function CurrencySelect<const T extends string>({
         className={clsx(
           getResetClassName("button"),
           className,
-          "inline-flex h-8 items-center gap-x-2 bg-gray-200 px-2 text-base dark:bg-gray-700",
+          "inline-flex h-10 items-center justify-between gap-x-2 rounded-lg border border-gray-300 px-3 text-start hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300",
         )}
       >
         <SelectContextConsumer>
@@ -86,7 +86,7 @@ function CurrencySelectItemContent({
   currency,
 }: CurrencySelectItemContentProps) {
   return (
-    <span className="inline-flex items-center gap-x-2">
+    <span className="inline-flex items-center gap-x-2 text-base leading-none">
       <CountryFlag code={currency} intrinsicSize={24} />
       {currency}
     </span>
