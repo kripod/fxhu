@@ -2,7 +2,6 @@ import {
   Select,
   SelectArrow,
   SelectItem,
-  SelectItemCheck,
   SelectLabel,
   SelectPopover,
   SelectProvider,
@@ -47,7 +46,7 @@ export function CurrencySelect<const T extends string>({
       value={controlledValue}
       setValue={onChange}
     >
-      <SelectLabel>{label}</SelectLabel>
+      <SelectLabel className="pb-2">{label}</SelectLabel>
       <Select
         name={name}
         className={clsx(
@@ -66,11 +65,20 @@ export function CurrencySelect<const T extends string>({
         </SelectContextConsumer>
         <SelectArrow />
       </Select>
-      <SelectPopover modal gutter={8} sameWidth unmountOnHide>
+      <SelectPopover
+        portal
+        gutter={4}
+        sameWidth
+        unmountOnHide
+        className="z-50 max-h-[min(24rem,var(--popover-available-height))] scroll-py-1 overflow-y-auto rounded-lg border border-gray-300 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
+      >
         {items.map((item) => (
-          <SelectItem key={item} value={item}>
+          <SelectItem
+            key={item}
+            value={item}
+            className="flex rounded px-2 py-1 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+          >
             <CurrencySelectItemContent currency={item} />
-            <SelectItemCheck />
           </SelectItem>
         ))}
       </SelectPopover>
@@ -86,7 +94,7 @@ function CurrencySelectItemContent({
   currency,
 }: CurrencySelectItemContentProps) {
   return (
-    <span className="inline-flex items-center gap-x-2 text-base leading-none">
+    <span className="inline-flex items-center gap-x-2 text-base/none">
       <CountryFlag code={currency} intrinsicSize={24} />
       {currency}
     </span>
