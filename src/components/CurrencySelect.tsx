@@ -26,8 +26,8 @@ export interface CurrencySelectProps<T extends string> {
   label?: React.ReactNode;
   name?: string;
   items: readonly T[];
-  defaultValue?: NoInfer<T>;
   value?: NoInfer<T>;
+  defaultValue?: NoInfer<T>;
   className?: string;
   onChange?: (value: T) => void;
 }
@@ -36,8 +36,8 @@ export function CurrencySelect<const T extends string>({
   label,
   name,
   items,
-  defaultValue,
   value: controlledValue,
+  defaultValue = controlledValue === undefined ? items[0] : undefined,
   className,
   onChange,
 }: CurrencySelectProps<T>) {
