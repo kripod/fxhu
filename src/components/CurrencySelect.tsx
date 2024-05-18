@@ -24,6 +24,7 @@ function SelectContextConsumer({ children }: SelectContextConsumerProps) {
 
 export interface CurrencySelectProps<T extends string> {
   label?: React.ReactNode;
+  name?: string;
   items: readonly T[];
   defaultValue?: NoInfer<T>;
   value?: NoInfer<T>;
@@ -33,6 +34,7 @@ export interface CurrencySelectProps<T extends string> {
 
 export function CurrencySelect<const T extends string>({
   label,
+  name,
   items,
   defaultValue,
   value: controlledValue,
@@ -47,6 +49,7 @@ export function CurrencySelect<const T extends string>({
     >
       <SelectLabel>{label}</SelectLabel>
       <Select
+        name={name}
         className={clsx(
           getResetClassName("button"),
           className,

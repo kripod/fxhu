@@ -22,5 +22,10 @@ const currencies = [
 ---
 
 <div class="not-content">
-  <CurrencySelect client:load label="Currency" items={currencies} />
+  <CurrencySelect
+    client:load
+    label="Currency"
+    name="currency"
+    items={currencies}
+  />
 </div>
