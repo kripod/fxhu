@@ -25,13 +25,13 @@ function SelectContextConsumer({ children }: SelectContextConsumerProps) {
 export interface CurrencySelectProps<T extends string> {
   label?: React.ReactNode;
   items: readonly T[];
-  defaultValue?: T;
-  value?: T;
+  defaultValue?: NoInfer<T>;
+  value?: NoInfer<T>;
   className?: string;
   onChange?: (value: T) => void;
 }
 
-export function CurrencySelect<T extends string>({
+export function CurrencySelect<const T extends string>({
   label,
   items,
   defaultValue,
