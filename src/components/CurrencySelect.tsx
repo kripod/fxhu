@@ -66,7 +66,7 @@ export function CurrencySelect<const T extends string>({
         </SelectContextConsumer>
         <SelectArrow />
       </Select>
-      <SelectPopover modal gutter={8} sameWidth>
+      <SelectPopover modal gutter={8} sameWidth unmountOnHide>
         {items.map((item) => (
           <SelectItem key={item} value={item}>
             <CurrencySelectItemContent currency={item} />
