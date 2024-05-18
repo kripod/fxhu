@@ -36,16 +36,12 @@ export default defineConfig({
       ],
       sidebar: [
         ...openAPISidebarGroups,
-        ...(process.env.NODE_ENV !== "production"
-          ? [
-              {
-                label: "Demo",
-                autogenerate: {
-                  directory: "demo",
-                },
-              },
-            ]
-          : []),
+        {
+          label: "Demo",
+          autogenerate: {
+            directory: "demo",
+          },
+        },
       ],
       head: [
         {
