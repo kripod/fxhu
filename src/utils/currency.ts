@@ -1,9 +1,20 @@
+import { SITE_LOCALE } from "./intl";
+
 const CURRENCY_LENGTH = 3;
 
 export const QUOTE_CURRENCY = "HUF";
 
 export function isCurrency(value: string) {
   return /^[A-Z]{3}$/.test(value);
+}
+
+const currencyNames = new Intl.DisplayNames(SITE_LOCALE, {
+  type: "currency",
+  fallback: "none",
+});
+
+export function currencyName(currency: string) {
+  return currencyNames.of(currency);
 }
 
 export function currencyPairSymbol(

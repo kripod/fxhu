@@ -10,6 +10,7 @@ import {
 import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
 
+import { currencyName } from "../utils/currency";
 import { CountryFlag } from "./CountryFlag";
 
 type SelectContextConsumerProps = React.ConsumerProps<
@@ -59,7 +60,7 @@ export function CurrencySelect<const T extends string>({
           {(store) => {
             const value = store?.useState().value;
             return typeof value === "string" ? (
-              <CurrencySelectItemContent currency={value} />
+              <CurrencySelectItemContent currency={value} compact />
             ) : null;
           }}
         </SelectContextConsumer>
@@ -70,7 +71,7 @@ export function CurrencySelect<const T extends string>({
         gutter={4}
         sameWidth
         unmountOnHide
-        className="z-50 max-h-[min(24rem,var(--popover-available-height))] scroll-py-1 overflow-y-auto rounded-lg border border-gray-300 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
+        className="z-50 max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] scroll-py-1 overflow-y-auto rounded-lg border border-gray-300 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
       >
         {items.map((item) => (
           <SelectItem
@@ -88,15 +89,18 @@ export function CurrencySelect<const T extends string>({
 
 interface CurrencySelectItemContentProps {
   currency: string;
+  compact?: boolean;
 }
 
 function CurrencySelectItemContent({
   currency,
+  compact,
 }: CurrencySelectItemContentProps) {
+  const name = !compact ? currencyName(currency) : null;
   return (
     <span className="inline-flex items-center gap-x-2 text-base/none">
       <CountryFlag code={currency} intrinsicSize={24} />
-      {currency}
+      {currency} {name != null ? `(${name})` : null}
     </span>
   );
 }
