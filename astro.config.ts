@@ -4,8 +4,6 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
-import { socialImageHeight, socialImageWidth } from "./src/utils/socialImage";
-
 const site = "https://fxhu.kripod.dev";
 
 export default defineConfig({
@@ -71,14 +69,14 @@ export default defineConfig({
           tag: "meta",
           attrs: {
             property: "og:image:width",
-            content: socialImageWidth.toString(),
+            content: "1200",
           },
         },
         {
           tag: "meta",
           attrs: {
             property: "og:image:height",
-            content: socialImageHeight.toString(),
+            content: "628",
           },
         },
         {
