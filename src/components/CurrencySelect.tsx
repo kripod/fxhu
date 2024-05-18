@@ -22,7 +22,7 @@ function SelectContextConsumer({ children }: SelectContextConsumerProps) {
   return children(store);
 }
 
-export interface CurrencySelectProps<T extends string> {
+export interface CurrencySelectProps<T extends string = string> {
   label?: React.ReactNode;
   name?: string;
   items: readonly T[];

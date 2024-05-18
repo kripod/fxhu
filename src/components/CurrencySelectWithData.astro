@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 
 import { baseCurrencyFromSymbol, QUOTE_CURRENCY } from "../utils/currency";
 import { isDateStale } from "../utils/date";
-import { CurrencySelect } from "./CurrencySelect";
+import { CurrencySelect, type CurrencySelectProps } from "./CurrencySelect";
+
+type Props = Omit<CurrencySelectProps, "items">;
 
 const quoteRecords = await getCollection("quoteRecords");
 const currencies = [
@@ -21,11 +23,4 @@ const currencies = [
 ] as const;
 ---
 
-<div class="not-content text-base">
-  <CurrencySelect
-    client:load
-    label="Currency"
-    name="currency"
-    items={currencies}
-  />
-</div>
+<CurrencySelect client:load items={currencies} {...Astro.props} />
