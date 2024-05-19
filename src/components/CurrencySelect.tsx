@@ -78,7 +78,7 @@ export function CurrencySelect<const T extends string>({
             <SelectItem
               key={item}
               value={item}
-              className="flex rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+              className="rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
             >
               <CurrencySelectItemContent currency={item} />
             </SelectItem>
@@ -100,7 +100,7 @@ function CurrencySelectItemContent({
 }: CurrencySelectItemContentProps) {
   const name = !compact ? currencyName(currency) : null;
   return (
-    <span className="inline-flex items-center gap-x-2 text-base/none">
+    <span className="flex items-center gap-x-2 text-base/none">
       <CountryFlag code={currency} intrinsicSize={24} />
       {currency} {name != null ? `(${name})` : null}
     </span>
