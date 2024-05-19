@@ -71,17 +71,19 @@ export function CurrencySelect<const T extends string>({
         gutter={4}
         sameWidth
         unmountOnHide
-        className="z-50 max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] scroll-py-1 overflow-y-auto rounded-lg border border-gray-300 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
+        className="z-50 flex max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900"
       >
-        {items.map((item) => (
-          <SelectItem
-            key={item}
-            value={item}
-            className="flex rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
-          >
-            <CurrencySelectItemContent currency={item} />
-          </SelectItem>
-        ))}
+        <div className="scroll-py-1 overflow-auto p-1">
+          {items.map((item) => (
+            <SelectItem
+              key={item}
+              value={item}
+              className="flex rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+            >
+              <CurrencySelectItemContent currency={item} />
+            </SelectItem>
+          ))}
+        </div>
       </SelectPopover>
     </SelectProvider>
   );
