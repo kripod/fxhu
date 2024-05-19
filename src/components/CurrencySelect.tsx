@@ -70,7 +70,6 @@ export function CurrencySelect<const T extends string>({
         portal
         gutter={4}
         sameWidth
-        unmountOnHide
         className="z-50 flex max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900"
       >
         <div className="scroll-py-1 overflow-auto p-1">
