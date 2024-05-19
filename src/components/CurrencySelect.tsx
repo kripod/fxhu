@@ -77,7 +77,7 @@ export function CurrencySelect<const T extends string>({
           <SelectItem
             key={item}
             value={item}
-            className="flex rounded px-2 py-1 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+            className="flex rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
           >
             <CurrencySelectItemContent currency={item} />
           </SelectItem>
