@@ -32,7 +32,7 @@ const currencies = [
   ...activeBaseCurrencies.filter(
     (currency) => !POPULAR_BASE_CURRENCIES.includes(currency),
   ),
-] as const;
+];
 ---
 
 <CurrencySelect client:load items={currencies} {...Astro.props} />
