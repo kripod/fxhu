@@ -53,7 +53,7 @@ export function CurrencySelect<const T extends string>({
         className={clsx(
           getResetClassName("button"),
           className,
-          "inline-flex h-10 items-center justify-between gap-x-2 rounded-lg border border-gray-300 px-3 text-start hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300",
+          "inline-flex h-10 items-center justify-between gap-x-2 rounded-lg px-3 text-start ring-1 ring-inset ring-gray-300 hover:ring-gray-700 dark:ring-gray-700 dark:hover:ring-gray-300",
         )}
       >
         <SelectContextConsumer>
@@ -71,7 +71,7 @@ export function CurrencySelect<const T extends string>({
         gutter={4}
         sameWidth
         unmountOnHide
-        className="z-50 max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] scroll-py-1 overflow-y-auto rounded-lg border border-gray-300 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
+        className="z-50 max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] scroll-py-1 overflow-y-auto rounded-lg bg-white p-1 shadow-lg ring-1 ring-inset ring-gray-300 dark:bg-gray-900 dark:ring-gray-700"
       >
         {items.map((item) => (
           <SelectItem
