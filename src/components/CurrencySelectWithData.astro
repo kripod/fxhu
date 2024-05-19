@@ -12,7 +12,6 @@ import { CurrencySelect, type CurrencySelectProps } from "./CurrencySelect";
 type Props = Omit<CurrencySelectProps, "items">;
 
 const quoteRecords = await getCollection("quoteRecords");
-
 const activeBaseCurrencies = quoteRecords
   .filter((quoteRecord) => {
     const lastQuote = Object.entries(quoteRecord.data).at(-1);
@@ -23,16 +22,17 @@ const activeBaseCurrencies = quoteRecords
     return false;
   })
   .map((quoteRecord) => baseCurrencyFromSymbol(quoteRecord.id));
-
-const currencies = [
-  QUOTE_CURRENCY,
-  ...POPULAR_BASE_CURRENCIES.filter((currency) =>
-    activeBaseCurrencies.includes(currency),
-  ),
-  ...activeBaseCurrencies.filter(
-    (currency) => !POPULAR_BASE_CURRENCIES.includes(currency),
-  ),
-];
 ---
 
-<CurrencySelect client:load items={currencies} {...Astro.props} />
+<CurrencySelect
+  client:load
+  items={[
+    QUOTE_CURRENCY,
+    ...POPULAR_BASE_CURRENCIES.filter((currency) =>
+      activeBaseCurrencies.includes(currency),
+    ),
+    ...activeBaseCurrencies.filter(
+      (currency) => !POPULAR_BASE_CURRENCIES.includes(currency),
+    ),
+  ]}
+/>
