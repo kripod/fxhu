@@ -74,10 +74,9 @@ export function CurrencySelect<const T extends string>({
       <SelectPopover
         portal
         gutter={4}
-        sameWidth
-        className="z-50 flex max-h-[min(24rem,var(--popover-available-height))] min-w-[min(18rem,var(--popover-available-width))] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
+        className="z-50 flex max-h-[--popover-available-height] w-72 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
       >
-        <div className="scroll-py-1 overflow-auto p-1">
+        <div className="max-h-96 scroll-py-1 overflow-auto p-1">
           {items.map((item) => (
             <SelectItem
               key={item}
