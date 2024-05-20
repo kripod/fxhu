@@ -118,7 +118,7 @@ export function CurrencySelect<const T extends string>({
           <Combobox
             autoSelect
             placeholder={searchPlaceholder}
-            className="m-1 h-8 rounded border border-gray-300 px-2 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
+            className="m-1 h-8 flex-none rounded border border-gray-300 px-2 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
           />
           <ComboboxList
             className={clsx(
