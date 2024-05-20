@@ -111,7 +111,7 @@ export function CurrencySelect<const T extends string>({
           <SelectArrow />
         </Select>
         <SelectPopover
-          portal
+          modal
           gutter={4}
           className="z-50 flex max-h-[--popover-available-height] w-80 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col rounded-lg border border-gray-300 bg-white text-base/none shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
         >
@@ -122,7 +122,7 @@ export function CurrencySelect<const T extends string>({
           />
           <ComboboxList
             className={clsx(
-              "max-h-96 scroll-py-1 overflow-auto overscroll-contain",
+              "max-h-96 scroll-py-1 overflow-auto",
               !matchesEmpty && "p-1",
             )}
           >
