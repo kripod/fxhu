@@ -62,6 +62,7 @@ export function CurrencySelect<const T extends string>({
   const { label } = useField();
 
   const [searchValue, setSearchValue] = useState("");
+
   const matches = useMemo(() => {
     const indexes = fuzzySearch(
       items.map((item) => searchMatcher(item).join("\n")),
@@ -69,6 +70,7 @@ export function CurrencySelect<const T extends string>({
     );
     return indexes != null ? indexes.map((index) => items[index]!) : null;
   }, [items, searchMatcher, searchValue]);
+  const matchesEmpty = matches?.length === 0;
 
   return (
     <ComboboxProvider
@@ -118,22 +120,26 @@ export function CurrencySelect<const T extends string>({
             placeholder={searchPlaceholder}
             className="m-1 h-8 rounded border border-gray-300 px-2 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
           />
-          <ComboboxList className={"max-h-64 scroll-py-1 overflow-auto p-1"}>
-            {matches?.length !== 0 ? (
-              (matches ?? items).map((item) => (
-                <SelectItem
-                  key={item}
-                  render={(props) => <ComboboxItem {...props} />}
-                  value={item}
-                  className="rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
-                >
-                  <CurrencySelectItemContent currency={item} />
-                </SelectItem>
-              ))
-            ) : (
-              <div className="p-2">No results found</div>
+          <ComboboxList
+            className={clsx(
+              "max-h-64 scroll-py-1 overflow-auto",
+              !matchesEmpty && "p-1",
             )}
+          >
+            {(matches ?? items).map((item) => (
+              <SelectItem
+                key={item}
+                render={(props) => <ComboboxItem {...props} />}
+                value={item}
+                className="rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+              >
+                <CurrencySelectItemContent currency={item} />
+              </SelectItem>
+            ))}
           </ComboboxList>
+          {matchesEmpty ? (
+            <div className="m-1 p-2">No results found</div>
+          ) : null}
         </SelectPopover>
       </SelectProvider>
     </ComboboxProvider>
