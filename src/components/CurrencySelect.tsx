@@ -122,7 +122,7 @@ export function CurrencySelect<const T extends string>({
           />
           <ComboboxList
             className={clsx(
-              "max-h-96 scroll-py-1 overflow-auto",
+              "max-h-96 scroll-py-1 overflow-auto overscroll-contain",
               !matchesEmpty && "p-1",
             )}
           >
