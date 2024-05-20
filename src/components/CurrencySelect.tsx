@@ -74,18 +74,20 @@ export function CurrencySelect<const T extends string>({
       <SelectPopover
         portal
         gutter={4}
-        className="z-50 flex max-h-[--popover-available-height] w-72 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
+        className="z-50 flex max-h-[--popover-available-height] w-80 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
       >
-        <div className="max-h-96 scroll-py-1 overflow-auto p-1">
-          {items.map((item) => (
-            <SelectItem
-              key={item}
-              value={item}
-              className="rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
-            >
-              <CurrencySelectItemContent currency={item} />
-            </SelectItem>
-          ))}
+        <div className="scroll-py-1 overflow-auto p-1">
+          <div className="max-h-64">
+            {items.map((item) => (
+              <SelectItem
+                key={item}
+                value={item}
+                className="rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+              >
+                <CurrencySelectItemContent currency={item} />
+              </SelectItem>
+            ))}
+          </div>
         </div>
       </SelectPopover>
     </SelectProvider>
