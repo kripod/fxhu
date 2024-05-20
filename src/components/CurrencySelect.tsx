@@ -12,6 +12,7 @@ import { getResetClassName } from "css-homogenizer/reset-scoped";
 
 import { currencyName } from "../utils/currency";
 import { CountryFlag } from "./CountryFlag";
+import { useField } from "./Field";
 
 type SelectContextConsumerProps = React.ConsumerProps<
   ReturnType<typeof useSelectContext>
@@ -23,7 +24,6 @@ function SelectContextConsumer({ children }: SelectContextConsumerProps) {
 }
 
 export interface CurrencySelectProps<T extends string = string> {
-  label?: React.ReactNode;
   name?: string;
   items: readonly T[];
   value?: NoInfer<T>;
@@ -33,7 +33,6 @@ export interface CurrencySelectProps<T extends string = string> {
 }
 
 export function CurrencySelect<const T extends string>({
-  label,
   name,
   items,
   value: controlledValue,
@@ -41,6 +40,8 @@ export function CurrencySelect<const T extends string>({
   className,
   onChange,
 }: CurrencySelectProps<T>) {
+  const { label } = useField();
+
   return (
     <SelectProvider
       defaultValue={defaultValue}
@@ -48,10 +49,7 @@ export function CurrencySelect<const T extends string>({
       setValue={onChange}
     >
       {label ? (
-        <SelectLabel
-          render={(props) => <label {...props} />}
-          className="block pb-2"
-        >
+        <SelectLabel render={(props) => <label {...props} />}>
           {label}
         </SelectLabel>
       ) : null}

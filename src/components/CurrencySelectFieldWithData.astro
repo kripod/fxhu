@@ -7,9 +7,12 @@ import {
   QUOTE_CURRENCY,
 } from "../utils/currency";
 import { isDateStale } from "../utils/date";
-import { CurrencySelect, type CurrencySelectProps } from "./CurrencySelect";
+import {
+  CurrencySelectField,
+  type CurrencySelectFieldProps,
+} from "./CurrencySelectField";
 
-type Props = Omit<CurrencySelectProps, "items">;
+type Props = Omit<CurrencySelectFieldProps, "items">;
 
 const quoteRecords = await getCollection("quoteRecords");
 const activeBaseCurrencies = quoteRecords
@@ -24,7 +27,7 @@ const activeBaseCurrencies = quoteRecords
   .map((quoteRecord) => baseCurrencyFromSymbol(quoteRecord.id));
 ---
 
-<CurrencySelect
+<CurrencySelectField
   client:load
   items={[
     QUOTE_CURRENCY,
