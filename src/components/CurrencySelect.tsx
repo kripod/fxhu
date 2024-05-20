@@ -47,7 +47,14 @@ export function CurrencySelect<const T extends string>({
       value={controlledValue}
       setValue={onChange}
     >
-      <SelectLabel className="pb-2">{label}</SelectLabel>
+      {label ? (
+        <SelectLabel
+          render={(props) => <label {...props} />}
+          className="block pb-2"
+        >
+          {label}
+        </SelectLabel>
+      ) : null}
       <Select
         name={name}
         className={clsx(
