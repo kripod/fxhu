@@ -97,7 +97,7 @@ export function CurrencySelect<const T extends string>({
           className={clsx(
             getResetClassName("button"),
             className,
-            "inline-flex h-10 items-center justify-between gap-x-2 rounded-lg border border-gray-300 px-3 text-start text-base/none hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300",
+            "inline-flex h-10 items-center justify-between gap-x-2 rounded-lg border border-gray-300 px-4 text-start text-base/none hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300",
           )}
         >
           <SelectContextConsumer>
@@ -113,17 +113,17 @@ export function CurrencySelect<const T extends string>({
         <SelectPopover
           modal
           gutter={4}
-          className="z-50 flex max-h-[--popover-available-height] w-80 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col rounded-lg border border-gray-300 bg-white text-base/none shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
+          className="z-50 flex max-h-[--popover-available-height] w-80 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col rounded-xl border border-gray-300 bg-white text-base/none shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
         >
           <Combobox
             autoSelect
             placeholder={searchPlaceholder}
-            className="m-1 h-8 flex-none rounded border border-gray-300 px-2 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
+            className="m-1.5 h-8 flex-none rounded-md border border-gray-300 px-2.5 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
           />
           <ComboboxList
             className={clsx(
-              "max-h-96 scroll-py-1 overflow-auto",
-              !matchesEmpty && "p-1",
+              "max-h-96 scroll-py-1.5 overflow-auto",
+              !matchesEmpty && "p-1.5 pt-0",
             )}
           >
             {(matches ?? items).map((item) => (
@@ -131,14 +131,14 @@ export function CurrencySelect<const T extends string>({
                 key={item}
                 render={(props) => <ComboboxItem {...props} />}
                 value={item}
-                className="rounded p-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+                className="rounded-md px-2.5 py-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
               >
                 <CurrencySelectItemContent currency={item} />
               </SelectItem>
             ))}
           </ComboboxList>
           {matchesEmpty ? (
-            <div className="m-1 p-2">No results found</div>
+            <div className="m-1.5 mt-0 px-2.5 py-2">No results found</div>
           ) : null}
         </SelectPopover>
       </SelectProvider>
