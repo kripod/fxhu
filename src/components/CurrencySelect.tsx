@@ -120,23 +120,25 @@ export function CurrencySelect<const T extends string>({
             placeholder={searchPlaceholder}
             className="m-1.5 h-8 flex-none rounded-md border border-gray-300 px-2.5 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
           />
-          <ComboboxList
-            className={clsx(
-              "max-h-96 scroll-py-1.5 overflow-auto",
-              !matchesEmpty && "p-1.5",
-            )}
-          >
-            {(matches ?? items).map((item) => (
-              <SelectItem
-                key={item}
-                render={(props) => <ComboboxItem {...props} />}
-                value={item}
-                className="rounded-md px-2.5 py-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
-              >
-                <CurrencySelectItemContent currency={item} />
-              </SelectItem>
-            ))}
-          </ComboboxList>
+          <div className="overflow-hidden rounded-xl">
+            <ComboboxList
+              className={clsx(
+                "max-h-96 scroll-py-1.5 overflow-auto",
+                !matchesEmpty && "p-1.5",
+              )}
+            >
+              {(matches ?? items).map((item) => (
+                <SelectItem
+                  key={item}
+                  render={(props) => <ComboboxItem {...props} />}
+                  value={item}
+                  className="rounded-md px-2.5 py-2 data-[active-item]:bg-blue-600 data-[active-item]:text-white dark:data-[active-item]:bg-blue-200 dark:data-[active-item]:text-blue-950"
+                >
+                  <CurrencySelectItemContent currency={item} />
+                </SelectItem>
+              ))}
+            </ComboboxList>
+          </div>
           {matchesEmpty ? (
             <div className="m-1.5 px-2.5 py-2">No results found</div>
           ) : null}
