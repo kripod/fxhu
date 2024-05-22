@@ -124,7 +124,7 @@ export function CurrencySelect<const T extends string>({
             <ComboboxList
               className={clsx(
                 "max-h-96 scroll-py-1.5 overflow-auto",
-                !matchesEmpty && "p-1.5",
+                !matchesEmpty && "p-1.5 pt-0",
               )}
             >
               {(matches ?? items).map((item) => (
@@ -140,7 +140,7 @@ export function CurrencySelect<const T extends string>({
             </ComboboxList>
           </div>
           {matchesEmpty ? (
-            <div className="m-1.5 px-2.5 py-2">No results found</div>
+            <div className="m-1.5 mt-0 px-2.5 py-2">No results found</div>
           ) : null}
         </SelectPopover>
       </SelectProvider>
