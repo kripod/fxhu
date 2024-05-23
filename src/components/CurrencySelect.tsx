@@ -113,6 +113,7 @@ export function CurrencySelect<const T extends string>({
           render={(props) => <Popover {...props} />}
           modal
           gutter={4}
+          className="flex flex-col"
         >
           <Combobox
             render={(props) => <Input size="sm" {...props} />}
