@@ -12,14 +12,16 @@ import {
   useSelectContext,
 } from "@ariakit/react";
 import { clsx } from "clsx/lite";
-import { getResetClassName } from "css-homogenizer/reset-scoped";
 import { startTransition, useMemo, useState } from "react";
 
 import { countryFromCurrency } from "../utils/currency";
 import { currencyNames, regionNames } from "../utils/intl";
 import { fuzzySearch } from "../utils/string";
+import { ButtonSecondary } from "./ButtonSecondary";
 import { CountryFlag } from "./CountryFlag";
 import { useField } from "./Field";
+import { Input } from "./Input";
+import { Popover } from "./Popover";
 
 type SelectContextConsumerProps = React.ConsumerProps<
   ReturnType<typeof useSelectContext>
@@ -93,12 +95,9 @@ export function CurrencySelect<const T extends string>({
           </SelectLabel>
         ) : null}
         <Select
+          render={(props) => <ButtonSecondary {...props} />}
           name={name}
-          className={clsx(
-            getResetClassName("button"),
-            className,
-            "inline-flex h-10 items-center justify-between gap-x-2 rounded-lg border border-gray-300 px-4 text-start text-base/none hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300",
-          )}
+          className="text-start"
         >
           <SelectContextConsumer>
             {(store) => {
@@ -111,14 +110,15 @@ export function CurrencySelect<const T extends string>({
           <SelectArrow />
         </Select>
         <SelectPopover
+          render={(props) => <Popover {...props} />}
           modal
           gutter={4}
-          className="z-50 flex max-h-[--popover-available-height] w-80 min-w-[--popover-anchor-width] max-w-[--popover-available-width] flex-col rounded-xl border border-gray-300 bg-white text-base/none shadow-lg transition-opacity duration-200 data-[leave]:opacity-0 dark:border-gray-700 dark:bg-gray-900"
         >
           <Combobox
+            render={(props) => <Input size="sm" {...props} />}
             autoSelect
             placeholder={searchPlaceholder}
-            className="m-1.5 h-8 flex-none rounded-md border border-gray-300 px-2.5 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300"
+            className="m-1.5 flex-none"
           />
           <div className="flex max-h-96 flex-col overflow-hidden">
             <ComboboxList
