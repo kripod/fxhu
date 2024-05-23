@@ -89,11 +89,7 @@ export function CurrencySelect<const T extends string>({
         value={controlledValue}
         setValue={onChange}
       >
-        {label ? (
-          <SelectLabel render={(props) => <label {...props} />}>
-            {label}
-          </SelectLabel>
-        ) : null}
+        {label ? <SelectLabel>{label}</SelectLabel> : null}
         <Select
           render={(props) => <ButtonSecondary {...props} />}
           name={name}
