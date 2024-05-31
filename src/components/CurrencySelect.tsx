@@ -30,7 +30,6 @@ export interface CurrencySelectProps<T extends string = string> {
   defaultValue?: NoInfer<T>;
   searchPlaceholder?: string;
   searchMatcher?: (item: T) => readonly string[];
-  className?: string;
   onChange?: (value: T) => void;
 }
 
@@ -49,7 +48,6 @@ export function CurrencySelect<const T extends string>({
   defaultValue = controlledValue === undefined ? items[0] : undefined,
   searchPlaceholder = "Search by name or country…",
   searchMatcher = defaultSearchMatcher,
-  className,
   onChange,
 }: CurrencySelectProps<T>) {
   const { label } = useField();
