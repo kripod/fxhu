@@ -9,7 +9,7 @@ import {
   SelectLabel,
   SelectPopover,
   SelectProvider,
-  useSelectContext,
+  useSelectStore,
 } from "@ariakit/react";
 import { clsx } from "clsx/lite";
 import { startTransition, useMemo, useState } from "react";
@@ -22,15 +22,6 @@ import { CountryFlag } from "./CountryFlag";
 import { useField } from "./Field";
 import { Input } from "./Input";
 import { Popover } from "./Popover";
-
-type SelectContextConsumerProps = React.ConsumerProps<
-  ReturnType<typeof useSelectContext>
->;
-
-function SelectContextConsumer({ children }: SelectContextConsumerProps) {
-  const store = useSelectContext();
-  return children(store);
-}
 
 export interface CurrencySelectProps<T extends string = string> {
   name?: string;
@@ -63,8 +54,14 @@ export function CurrencySelect<const T extends string>({
 }: CurrencySelectProps<T>) {
   const { label } = useField();
 
-  const [searchValue, setSearchValue] = useState("");
+  const store = useSelectStore({
+    value: controlledValue,
+    defaultValue,
+    setValue: onChange,
+  });
+  const value = store.useState("value");
 
+  const [searchValue, setSearchValue] = useState("");
   const matches = useMemo(() => {
     const indexes = fuzzySearch(
       items.map((item) => searchMatcher(item).join("\n")),
@@ -84,25 +81,16 @@ export function CurrencySelect<const T extends string>({
         });
       }}
     >
-      <SelectProvider
-        defaultValue={defaultValue}
-        value={controlledValue}
-        setValue={onChange}
-      >
+      <SelectProvider store={store}>
         {label ? <SelectLabel>{label}</SelectLabel> : null}
         <Select
           render={(props) => <ButtonSecondary {...props} />}
           name={name}
           className="text-start"
         >
-          <SelectContextConsumer>
-            {(store) => {
-              const value = store?.useState().value;
-              return typeof value === "string" ? (
-                <CurrencySelectItemContent currency={value} compact />
-              ) : null;
-            }}
-          </SelectContextConsumer>
+          {typeof value === "string" ? (
+            <CurrencySelectItemContent currency={value} compact />
+          ) : null}
           <SelectArrow />
         </Select>
         <SelectPopover
