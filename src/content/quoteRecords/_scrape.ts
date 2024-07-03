@@ -1,4 +1,5 @@
 import * as fs from "node:fs/promises";
+import * as util from "node:util";
 
 import * as XLSX from "xlsx";
 
@@ -12,8 +13,16 @@ import { roundToSafePrecision, safeParseFloat } from "../../utils/number";
 
 const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
 
+const args = util.parseArgs({
+  options: {
+    full: {
+      type: "boolean",
+    },
+  },
+});
+
 const response = await fetch(
-  process.argv.includes("--full", 1)
+  args.values.full
     ? SOURCE_URL
     : `${SOURCE_URL}?year=${new Date().getUTCFullYear()}`,
 );
