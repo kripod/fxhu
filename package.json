@@ -17,11 +17,11 @@
   "dependencies": {
     "@ariakit/react": "0.4.7",
     "@astrojs/react": "3.6.0",
-    "@astrojs/starlight": "0.24.5",
+    "@astrojs/starlight": "0.25.0",
     "@astrojs/starlight-tailwind": "2.0.3",
     "@astrojs/tailwind": "5.1.0",
     "@leeoniya/ufuzzy": "1.0.14",
-    "astro": "4.11.3",
+    "astro": "4.11.5",
     "clsx": "2.1.1",
     "css-homogenizer": "4.0.0",
     "react": "18.3.1",
@@ -32,14 +32,14 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.7.0",
-    "@types/node": "20.14.9",
+    "@types/node": "20.14.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "prettier": "3.3.2",
     "prettier-plugin-astro": "0.14.0",
     "prettier-plugin-tailwindcss": "0.6.5",
-    "tsx": "4.16.0",
-    "typescript": "5.5.2",
+    "tsx": "4.16.2",
+    "typescript": "5.5.3",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   },
   "packageManager": "pnpm@9.4.0"
