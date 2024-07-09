@@ -1,7 +1,7 @@
 import { clsx } from "clsx/lite";
 import { forwardRef } from "react";
 
-export type PopoverProps = React.ComponentPropsWithRef<"div">;
+export interface PopoverProps extends React.ComponentPropsWithRef<"div"> {}
 
 export const Popover = forwardRef(function Popover(
   { className, ...props }: PopoverProps,

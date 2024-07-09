@@ -2,14 +2,10 @@ import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
 import { forwardRef } from "react";
 
-import type { Merge } from "../utils/types";
-
-export type InputProps = Merge<
-  React.ComponentPropsWithRef<"input">,
-  {
-    size?: "sm";
-  }
->;
+export interface InputProps
+  extends Omit<React.ComponentPropsWithRef<"input">, "size"> {
+  size?: "sm";
+}
 
 export const Input = forwardRef(function Input(
   { size = "sm", className, ...props }: InputProps,

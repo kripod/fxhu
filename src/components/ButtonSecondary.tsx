@@ -2,14 +2,10 @@ import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
 import { forwardRef } from "react";
 
-import type { Merge } from "../utils/types";
-
-export type ButtonSecondaryProps = Merge<
-  React.ComponentPropsWithRef<"button">,
-  {
-    size?: "md";
-  }
->;
+export interface ButtonSecondaryProps
+  extends React.ComponentPropsWithRef<"button"> {
+  size?: "md";
+}
 
 export const ButtonSecondary = forwardRef(function ButtonSecondary(
   { size = "md", className, ...props }: ButtonSecondaryProps,
