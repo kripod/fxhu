@@ -1,4 +1,4 @@
-import clsx from "clsx/lite";
+import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
 import { forwardRef } from "react";
 
