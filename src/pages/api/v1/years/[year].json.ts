@@ -5,8 +5,8 @@ import type {
   InferGetStaticPropsType,
 } from "astro";
 
-import { quotesByYearBySymbol } from "../symbols/[symbol]/[year].json";
-import { quoteYears } from "./index.json";
+import { quotesByYearBySymbol } from "../symbols/[symbol]/[year].json" with { type: "json" };
+import { quoteYears } from "./index.json" with { type: "json" };
 
 export const getStaticPaths = (() => {
   return quoteYears.map((year) => ({
