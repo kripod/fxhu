@@ -10,6 +10,7 @@ import {
   SelectPopover,
   SelectProvider,
   useSelectStore,
+  useStoreState,
 } from "@ariakit/react";
 import { clsx } from "clsx/lite";
 import { startTransition, useMemo, useState } from "react";
@@ -57,7 +58,7 @@ export function CurrencySelect<const T extends string>({
     defaultValue,
     setValue: onChange,
   });
-  const value = store.useState("value");
+  const value = useStoreState(store, "value");
 
   const [searchValue, setSearchValue] = useState("");
   const matches = useMemo(() => {
