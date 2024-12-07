@@ -24,8 +24,8 @@ importers:
         specifier: 5.1.3
         version: 5.1.3(astro@4.16.17(@types/node@22.10.1)(rollup@4.28.1)(typescript@5.7.2))(tailwindcss@3.4.16)
       '@leeoniya/ufuzzy':
-        specifier: 1.0.17
-        version: 1.0.17
+        specifier: 1.0.14
+        version: 1.0.14
       astro:
         specifier: 4.16.17
         version: 4.16.17(@types/node@22.10.1)(rollup@4.28.1)(typescript@5.7.2)
@@ -752,8 +752,8 @@ packages:
   '@jsdevtools/ono@7.1.3':
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
 
-  '@leeoniya/ufuzzy@1.0.17':
-    resolution: {integrity: sha512-bGNsu11VP70ZgN+bP9SOQ9rsX6Tu/RzLJQ5F5TzgM9IaZncZweu7lDwcMfPAQ9RW3TVMfnbMCD/NnowkjyT+dQ==}
+  '@leeoniya/ufuzzy@1.0.14':
+    resolution: {integrity: sha512-/xF4baYuCQMo+L/fMSUrZnibcu0BquEGnbxfVPiZhs/NbJeKj4c/UmFpQzW9Us0w45ui/yYW3vyaqawhNYsTzA==}
 
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
@@ -3550,7 +3550,7 @@ snapshots:
 
   '@jsdevtools/ono@7.1.3': {}
 
-  '@leeoniya/ufuzzy@1.0.17': {}
+  '@leeoniya/ufuzzy@1.0.14': {}
 
   '@mdx-js/mdx@3.1.0(acorn@8.14.0)':
     dependencies:
