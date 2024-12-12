@@ -46,7 +46,7 @@ export function CurrencySelect<const T extends string>({
   name,
   items,
   value: controlledValue,
-  defaultValue = controlledValue === undefined ? items[0] : undefined,
+  defaultValue = controlledValue === undefined ? items.at(0) : undefined,
   searchPlaceholder = "Search by name or country…",
   searchMatcher = defaultSearchMatcher,
   onChange,

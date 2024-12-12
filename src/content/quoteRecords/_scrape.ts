@@ -36,7 +36,7 @@ const workbook = XLSX.read(data, {
   cellText: false,
   cellHTML: false,
 });
-const sheetName = workbook.SheetNames[0];
+const sheetName = workbook.SheetNames.at(0);
 const sheet = sheetName != null ? workbook.Sheets[sheetName] : undefined;
 
 if (sheet == null) {
