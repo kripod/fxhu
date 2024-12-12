@@ -81,15 +81,15 @@ export function CurrencySelect<const T extends string>({
       }}
     >
       <SelectProvider store={store}>
-        {label ? <SelectLabel>{label}</SelectLabel> : null}
+        {label != null && <SelectLabel>{label}</SelectLabel>}
         <Select
           render={(props) => <ButtonSecondary {...props} />}
           name={name}
           className="text-start"
         >
-          {typeof value === "string" ? (
+          {typeof value === "string" && (
             <CurrencySelectItemContent currency={value} compact />
-          ) : null}
+          )}
           <SelectArrow />
         </Select>
         <SelectPopover
@@ -124,9 +124,9 @@ export function CurrencySelect<const T extends string>({
               ))}
             </ComboboxList>
           </div>
-          {matchesEmpty ? (
+          {matchesEmpty && (
             <div className="m-1.5 px-2.5 py-2">No results found</div>
-          ) : null}
+          )}
         </SelectPopover>
       </SelectProvider>
     </ComboboxProvider>
@@ -146,7 +146,7 @@ function CurrencySelectItemContent({
   return (
     <span className="flex items-center gap-x-2">
       <CountryFlag code={currency} intrinsicSize={24} />
-      {currency} {name != null ? `(${name})` : null}
+      {currency} {name != null && `(${name})`}
     </span>
   );
 }
