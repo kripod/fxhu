@@ -109,5 +109,5 @@ for (const [currency, rateByDate] of rateByDateByCurrency) {
     data: Object.fromEntries(quotes),
   };
   await file.truncate();
-  await file.writeFile(JSON.stringify(contents, null, 2) + "\n");
+  await file.writeFile(`${JSON.stringify(contents, null, 2)}\n`);
 }
