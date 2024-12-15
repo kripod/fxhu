@@ -105,10 +105,7 @@ for (const [currency, rateByDate] of rateByDateByCurrency) {
   }
   quotes.sort(([aDate], [bDate]) => Date.parse(aDate) - Date.parse(bDate));
 
+  const contents: QuoteRecord = Object.fromEntries(quotes);
   await file.truncate();
-  await file.write(
-    JSON.stringify(Object.fromEntries(quotes) satisfies QuoteRecord, null, 2) +
-      "\n",
-    0,
-  );
+  await file.write(JSON.stringify(contents, null, 2) + "\n", 0);
 }
