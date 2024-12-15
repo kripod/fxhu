@@ -1,13 +1,16 @@
 import { docsSchema } from "@astrojs/starlight/schema";
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const docs = defineCollection({
-  type: "content",
+  loader:
+    // TODO: Use `docsLoader()` from "@astrojs/starlight/loaders"
+    glob({ pattern: "[^_]*.mdx", base: "./src/data/docs" }),
   schema: docsSchema(),
 });
 
 const quoteRecords = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "[^_]*.json", base: "./src/data/quoteRecords" }),
   schema: z.record(z.string(), z.number()),
 });
 
