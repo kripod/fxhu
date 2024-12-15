@@ -6,14 +6,14 @@ import type {
 } from "astro";
 import { getCollection } from "astro:content";
 
-const quoteRecords = await getCollection("quoteRecords");
+const tickers = await getCollection("tickers");
 
 export const getStaticPaths = (() => {
-  return quoteRecords.map((quoteRecord) => ({
+  return tickers.map((ticker) => ({
     params: {
-      symbol: quoteRecord.id,
+      symbol: ticker.data.symbol,
     },
-    props: quoteRecord.data,
+    props: ticker.data.data,
   }));
 }) satisfies GetStaticPaths;
 

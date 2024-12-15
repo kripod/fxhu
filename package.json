@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "fetch:mnb": "tsx ./src/data/quoteRecords/_scrape.ts",
+    "fetch:mnb": "tsx ./src/data/tickers/_scrape.ts",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

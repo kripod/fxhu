@@ -3,10 +3,10 @@ import { getCollection } from "astro:content";
 
 import { quotesByYearBySymbol } from "../symbols/[symbol]/[year].json" with { type: "json" };
 
-const quoteRecords = await getCollection("quoteRecords");
+const tickers = await getCollection("tickers");
 
 const quoteDates = new Set(
-  quoteRecords.flatMap((quoteRecord) => Object.keys(quoteRecord.data)),
+  tickers.flatMap((ticker) => Object.keys(ticker.data.data)),
 );
 export const quoteYears = [
   ...new Set([...quoteDates].map((date) => new Date(date).getUTCFullYear())),

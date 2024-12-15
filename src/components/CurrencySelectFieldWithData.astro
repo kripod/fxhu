@@ -14,17 +14,17 @@ import {
 
 type Props = Omit<CurrencySelectFieldProps, "items">;
 
-const quoteRecords = await getCollection("quoteRecords");
-const activeBaseCurrencies = quoteRecords
-  .filter((quoteRecord) => {
-    const lastQuote = Object.entries(quoteRecord.data).at(-1);
+const tickers = await getCollection("tickers");
+const activeBaseCurrencies = tickers
+  .filter((ticker) => {
+    const lastQuote = Object.entries(ticker.data.data).at(-1);
     if (lastQuote != null) {
       const [lastDate] = lastQuote;
       return !isDateStale(new Date(lastDate));
     }
     return false;
   })
-  .map((quoteRecord) => baseCurrencyFromSymbol(quoteRecord.id));
+  .map((ticker) => baseCurrencyFromSymbol(ticker.data.symbol));
 ---
 
 <CurrencySelectField

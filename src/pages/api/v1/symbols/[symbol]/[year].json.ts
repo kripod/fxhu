@@ -6,13 +6,13 @@ import type {
 } from "astro";
 import { getCollection } from "astro:content";
 
-const quoteRecords = await getCollection("quoteRecords");
+const tickers = await getCollection("tickers");
 
 export const quotesByYearBySymbol = new Map(
-  quoteRecords.map((quoteRecord) => {
-    const quotes = Object.entries(quoteRecord.data);
+  tickers.map((ticker) => {
+    const quotes = Object.entries(ticker.data.data);
     return [
-      quoteRecord.id,
+      ticker.data.symbol,
       Map.groupBy(quotes, ([date]) => new Date(date).getUTCFullYear()),
     ];
   }),
