@@ -3,6 +3,7 @@ import * as util from "node:util";
 
 import * as XLSX from "xlsx";
 
+import { type QuoteRecord, QuoteRecordSchema } from "./_schema";
 import {
   currencyPairSymbol,
   isCurrency,
@@ -96,7 +97,7 @@ for (const [currency, rateByDate] of rateByDateByCurrency) {
 
   const prevContents = await file.readFile("utf8");
   const quotes = prevContents
-    ? Object.entries<number>(JSON.parse(prevContents))
+    ? Object.entries(QuoteRecordSchema.parse(JSON.parse(prevContents)))
     : [];
 
   for (const [date, rate] of rateByDate) {
@@ -106,7 +107,8 @@ for (const [currency, rateByDate] of rateByDateByCurrency) {
 
   await file.truncate();
   await file.write(
-    JSON.stringify(Object.fromEntries(quotes), null, 2) + "\n",
+    JSON.stringify(Object.fromEntries(quotes) satisfies QuoteRecord, null, 2) +
+      "\n",
     0,
   );
 }

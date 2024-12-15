@@ -1,6 +1,8 @@
 import { docsSchema } from "@astrojs/starlight/schema";
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+
+import { QuoteRecordSchema } from "./data/quoteRecords/_schema";
 
 const docs = defineCollection({
   loader:
@@ -15,7 +17,7 @@ const docs = defineCollection({
 
 const quoteRecords = defineCollection({
   loader: glob({ pattern: "[^_]*.json", base: "./src/data/quoteRecords" }),
-  schema: z.record(z.string(), z.number()),
+  schema: QuoteRecordSchema,
 });
 
 export const collections = {
