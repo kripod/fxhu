@@ -5,7 +5,11 @@ import { defineCollection, z } from "astro:content";
 const docs = defineCollection({
   loader:
     // TODO: Use `docsLoader()` from "@astrojs/starlight/loaders"
-    glob({ pattern: "[^_]*.mdx", base: "./src/data/docs" }),
+    // https://github.com/withastro/starlight/issues/2698
+    glob({
+      pattern: "**/[^_]*.{markdown,mdown,mkdn,mkd,mdwn,md,mdx}",
+      base: "./src/data/docs",
+    }),
   schema: docsSchema(),
 });
 
