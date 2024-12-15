@@ -40,7 +40,7 @@
     "prettier-plugin-tailwindcss": "0.6.9",
     "tsx": "4.19.2",
     "typescript": "5.7.2",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "packageManager": "pnpm@9.15.0"
 }

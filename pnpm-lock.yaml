@@ -79,8 +79,8 @@ importers:
         specifier: 5.7.2
         version: 5.7.2
       xlsx:
-        specifier: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
-        version: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
+        specifier: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
+        version: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 packages:
 
@@ -2919,9 +2919,9 @@ packages:
     resolution: {integrity: sha512-G8ura3S+3Z2G+mkgNRq8dqaFZAuxfsxpBB8OCTGRTCtp+l/v9nbFNmCUP1BZMts3G1142MsZfn6eeUKrr4PD1Q==}
     engines: {node: '>=18'}
 
-  xlsx@https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz:
-    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz}
-    version: 0.20.2
+  xlsx@https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz:
+    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz}
+    version: 0.20.3
     engines: {node: '>=0.8'}
     hasBin: true
 
@@ -6310,7 +6310,7 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.1.0
 
-  xlsx@https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz: {}
+  xlsx@https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz: {}
 
   xxhash-wasm@1.1.0: {}
 
