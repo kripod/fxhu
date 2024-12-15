@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 
+import { isDateStale } from "../utils/date";
 import {
   baseCurrencyFromSymbol,
   POPULAR_BASE_CURRENCIES,
   QUOTE_CURRENCY,
-} from "../utils/currency";
-import { isDateStale } from "../utils/date";
+} from "../utils/symbol";
 import {
   CurrencySelectField,
   type CurrencySelectFieldProps,

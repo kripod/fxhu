@@ -15,9 +15,9 @@ import {
 import { clsx } from "clsx/lite";
 import { startTransition, useMemo, useState } from "react";
 
-import { countryFromCurrency } from "../utils/currency";
 import { currencyNames, regionNames } from "../utils/intl";
 import { fuzzySearch } from "../utils/string";
+import { countryFromCurrency } from "../utils/symbol";
 import { ButtonSecondary } from "./ButtonSecondary";
 import { CountryFlag } from "./CountryFlag";
 import { useField } from "./Field";

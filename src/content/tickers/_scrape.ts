@@ -3,14 +3,14 @@ import * as util from "node:util";
 
 import * as XLSX from "xlsx";
 
-import { RateSchema, type Ticker, TickerSchema } from "./_schema";
+import { stringifyDate } from "../../utils/date";
+import { RateSchema, safeParseFloat } from "../../utils/number";
 import {
   currencyPairSymbol,
-  isCurrency,
+  CurrencySchema,
   QUOTE_CURRENCY,
-} from "../../utils/currency";
-import { stringifyDate } from "../../utils/date";
-import { safeParseFloat } from "../../utils/number";
+} from "../../utils/symbol";
+import { TickerSchema, type Ticker } from "../../utils/ticker";
 
 const SOURCE_URL = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx";
 
@@ -52,9 +52,10 @@ if (unitRow == null) {
   throw new Error("Cannot parse minor units of currencies");
 }
 
-const currencies = Object.keys(unitRow).filter(
-  (key) => isCurrency(key) && key !== QUOTE_CURRENCY,
-);
+const currencies = Object.keys(unitRow).filter((key) => {
+  const currencyResult = CurrencySchema.safeParse(key);
+  return currencyResult.success && currencyResult.data !== QUOTE_CURRENCY;
+});
 
 const unitByCurrency = new Map(
   currencies.map((currency) => [currency, safeParseFloat(unitRow[currency])]),

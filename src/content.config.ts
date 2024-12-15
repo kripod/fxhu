@@ -3,7 +3,7 @@ import { docsSchema } from "@astrojs/starlight/schema";
 import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
 
-import { TickerSchema } from "./content/tickers/_schema";
+import { TickerSchema } from "./utils/ticker";
 
 const docs = defineCollection({
   loader: docsLoader(),

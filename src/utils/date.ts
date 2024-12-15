@@ -1,3 +1,7 @@
+import { z } from "astro/zod";
+
+export const ISODateSchema = z.string().date();
+
 export function isDateStale(date: Date) {
   const pivot = new Date();
   pivot.setUTCDate(pivot.getUTCDate() - 30);
