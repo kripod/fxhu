@@ -87,7 +87,7 @@ export function CurrencySelect<const T extends string>({
           name={name}
           className="text-start"
         >
-          {typeof value === "string" && (
+          {!Array.isArray(value) && (
             <CurrencySelectItemContent currency={value} compact />
           )}
           <SelectArrow />
