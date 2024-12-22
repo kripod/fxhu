@@ -1,19 +1,18 @@
 import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
-import { forwardRef } from "react";
 
 export interface ButtonSecondaryProps
   extends React.ComponentPropsWithRef<"button"> {
   size?: "md";
 }
 
-export const ButtonSecondary = forwardRef(function ButtonSecondary(
-  { size = "md", className, ...props }: ButtonSecondaryProps,
-  ref: React.ForwardedRef<HTMLButtonElement>,
-) {
+export function ButtonSecondary({
+  size = "md",
+  className,
+  ...props
+}: ButtonSecondaryProps) {
   return (
     <button
-      ref={ref}
       type="button"
       className={clsx(
         getResetClassName("button"),
@@ -24,4 +23,4 @@ export const ButtonSecondary = forwardRef(function ButtonSecondary(
       {...props}
     />
   );
-});
+}

@@ -1,19 +1,14 @@
 import { clsx } from "clsx/lite";
 import { getResetClassName } from "css-homogenizer/reset-scoped";
-import { forwardRef } from "react";
 
 export interface InputProps
   extends Omit<React.ComponentPropsWithRef<"input">, "size"> {
   size?: "sm";
 }
 
-export const Input = forwardRef(function Input(
-  { size = "sm", className, ...props }: InputProps,
-  ref: React.ForwardedRef<HTMLInputElement>,
-) {
+export function Input({ size = "sm", className, ...props }: InputProps) {
   return (
     <input
-      ref={ref}
       className={clsx(
         getResetClassName("input"),
         className,
@@ -23,4 +18,4 @@ export const Input = forwardRef(function Input(
       {...props}
     />
   );
-});
+}

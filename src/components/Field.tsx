@@ -19,9 +19,9 @@ export interface FieldProps extends FieldContextValue {
 export function Field({ label, children }: FieldProps) {
   return (
     <div className="flex flex-col gap-y-2">
-      <FieldContext.Provider value={useMemo(() => ({ label }), [label])}>
+      <FieldContext value={useMemo(() => ({ label }), [label])}>
         {children}
-      </FieldContext.Provider>
+      </FieldContext>
     </div>
   );
 }
