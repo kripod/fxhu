@@ -1,5 +1,4 @@
 import { z } from "astro/zod";
-
 import { QuoteRecordSchema } from "./quote";
 import { SymbolSchema } from "./symbol";
 

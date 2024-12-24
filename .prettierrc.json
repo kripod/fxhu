@@ -1,3 +1,13 @@
 {
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"]
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrderTypeScriptVersion": "4.5.0",
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "explicitResourceManagement"
+  ]
 }

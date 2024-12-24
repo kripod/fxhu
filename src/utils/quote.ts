@@ -1,5 +1,4 @@
 import { z } from "astro/zod";
-
 import { ISODateSchema } from "./date";
 import { RateSchema } from "./number";
 

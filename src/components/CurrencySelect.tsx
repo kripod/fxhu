@@ -14,7 +14,6 @@ import {
 } from "@ariakit/react";
 import { clsx } from "clsx/lite";
 import { startTransition, useMemo, useState } from "react";
-
 import { currencyNames, regionNames } from "../utils/intl";
 import { fuzzySearch } from "../utils/string";
 import { countryFromCurrency } from "../utils/symbol";

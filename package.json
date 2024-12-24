@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
+    "@ianvs/prettier-plugin-sort-imports": "4.4.0",
     "@types/node": "22.10.2",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
