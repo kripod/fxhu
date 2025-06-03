@@ -8,9 +8,7 @@ const site = "https://fxhu.kripod.dev";
 
 export default defineConfig({
   site,
-  trailingSlash:
-    // TODO: Use 'always', see: https://github.com/withastro/astro/issues/10149
-    process.env.NODE_ENV === "production" ? "always" : "ignore",
+  trailingSlash: "always",
   integrations: [
     starlight({
       title: "FXHU",
