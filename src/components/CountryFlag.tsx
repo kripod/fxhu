@@ -10,7 +10,7 @@ export function CountryFlag({ code, intrinsicSize = 16 }: CountryFlagProps) {
       alt=""
       width={intrinsicSize}
       height={intrinsicSize}
-      className="rounded-full outline outline-1 -outline-offset-1 outline-black/10"
+      className="rounded-full outline -outline-offset-1 outline-black/10"
     />
   );
 }

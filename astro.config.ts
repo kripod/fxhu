@@ -1,6 +1,6 @@
 import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import starlightOpenAPI, { openAPISidebarGroups } from "starlight-openapi";
 
@@ -16,9 +16,13 @@ export default defineConfig({
       title: "FXHU",
       description:
         "Exchange rates API sourced from the National Bank of Hungary (Magyar Nemzeti Bank, MNB). Unlimited & CORS-enabled.",
-      social: {
-        github: "https://github.com/kripod/fxhu",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/kripod/fxhu",
+        },
+      ],
       editLink: {
         baseUrl: "https://github.com/kripod/fxhu/edit/main/",
       },
@@ -26,9 +30,11 @@ export default defineConfig({
         starlightOpenAPI([
           {
             base: "docs/v1",
-            collapsed: false,
-            label: "Reference",
             schema: "./src/pages/api/v1/_openapi.json",
+            sidebar: {
+              collapsed: false,
+              label: "Reference",
+            },
           },
         ]),
       ],
@@ -89,10 +95,13 @@ export default defineConfig({
       ],
       customCss: ["./src/custom-styles.css"],
     }),
-    tailwind({
-      applyBaseStyles: false,
-      nesting: true,
-    }),
     react(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  experimental: {
+    headingIdCompat: true,
+    preserveScriptOrder: true,
+  },
 });
