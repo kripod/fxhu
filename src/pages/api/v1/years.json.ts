@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { quotesByYearBySymbol } from "../symbols/[symbol]/[year].json" with { type: "json" };
+import { quotesByYearBySymbol } from "./symbols/[symbol]/[year].json" with { type: "json" };
 
 const tickers = await getCollection("tickers");
 
