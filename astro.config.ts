@@ -103,5 +103,6 @@ export default defineConfig({
   experimental: {
     headingIdCompat: true,
     preserveScriptOrder: true,
+    staticImportMetaEnv: true,
   },
 });
