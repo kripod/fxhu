@@ -11,10 +11,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/bootstrap
       - run: pnpm run fetch:mnb ${${{ github.event.schedule == '53 16 * * 1-5' }}:+--full}
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(data): update"
           commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
